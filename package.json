@@ -1,0 +1,20 @@
+{
+  "name": "lugano-planb-vite-theme",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Reusable Lugano Plan B Vite theme with shared CSS and header helpers.",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "test": "node --test"
+  },
+  "exports": {
+    ".": "./src/theme/index.js",
+    "./theme.css": "./src/theme/theme.css"
+  },
+  "devDependencies": {
+    "vite": "^7.3.1"
+  }
+}

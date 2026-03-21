@@ -1,0 +1,111 @@
+# Lugano Plan B Vite Theme
+
+Reusable Vite theme extracted from [`planb-tech-radar`](../planb-tech-radar), limited to the visual shell:
+
+- shared CSS tokens and layout
+- the homepage header and hero treatment
+- the hero image asset
+
+It does not include radar data, D3 rendering, or any page-specific content from the source repository.
+
+## What this repo exports
+
+- `lugano-planb-vite-theme/theme.css`: the reusable theme stylesheet
+- `lugano-planb-vite-theme`: DOM helpers to mount the Plan B header
+
+The exports point to source files on purpose. In Vite projects this is seamless: Vite resolves the package exports, processes the CSS import, and rewrites the hero asset URL automatically.
+
+## Local development
+
+```sh
+npm install
+npm run dev
+```
+
+Open the local Vite server to see the demo page.
+
+## Tests
+
+```sh
+npm test
+```
+
+## Adopt in another Vite repository
+
+Install from a local sibling checkout:
+
+```sh
+npm install ../lugano-planb-vite-theme
+```
+
+Or install from git once the repo is published:
+
+```sh
+npm install git+ssh://<host>/lugano-planb-vite-theme.git
+```
+
+In the target app entrypoint:
+
+```js
+import "lugano-planb-vite-theme/theme.css";
+import { mountPlanBHeader } from "lugano-planb-vite-theme";
+
+mountPlanBHeader({
+  target: document.querySelector("#app"),
+  headerContent: {
+    eyebrow: "Lugano LIPS",
+    title: "Lugano Improvement Proposals",
+    lede: "Open proposals for the Lugano ecosystem.",
+  },
+});
+```
+
+Then render the rest of the page as usual below the header.
+
+## Example: adopt in `lugano-lips`
+
+Minimal `src/main.js` shape:
+
+```js
+import "lugano-planb-vite-theme/theme.css";
+import { mountPlanBHeader } from "lugano-planb-vite-theme";
+
+const app = document.querySelector("#app");
+
+mountPlanBHeader({
+  target: app,
+  headerContent: {
+    eyebrow: "Lugano LIPS",
+    title: "Lugano Improvement Proposals",
+    lede: "Community-authored proposals with the Plan B visual shell.",
+  },
+});
+
+const content = document.createElement("main");
+content.className = "planb-container planb-main";
+content.innerHTML = `
+  <section class="planb-panel">
+    <h2>Latest proposals</h2>
+    <p>Render your repository content here.</p>
+  </section>
+`;
+
+app.append(content);
+```
+
+If the host app needs different spacing or colors, override the CSS custom properties after importing the theme:
+
+```css
+:root {
+  --planb-color-canvas: #121212;
+  --planb-color-panel: #1f1f1f;
+}
+```
+
+## Repository structure
+
+- `src/theme/domain.js`: theme defaults and normalization rules
+- `src/theme/index.js`: public DOM API for host apps
+- `src/theme/theme.css`: reusable style layer
+- `src/main.js`: demo page entry
+- `test/theme.test.mjs`: lightweight API tests
