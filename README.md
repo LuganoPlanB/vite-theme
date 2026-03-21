@@ -1,12 +1,10 @@
 # Lugano Plan B Vite Theme
 
-Reusable Vite theme extracted from [`planb-tech-radar`](../planb-tech-radar), limited to the visual shell:
+Reusable Vite theme:
 
 - shared CSS tokens and layout
 - the homepage header and hero treatment
 - the hero image asset
-
-It does not include radar data, D3 rendering, or any page-specific content from the source repository.
 
 ## What this repo exports
 
@@ -32,16 +30,14 @@ npm test
 
 ## Adopt in another Vite repository
 
-Install from a local sibling checkout:
 
+Install from github:
+```sh
+npm install https://github.com/LuganoPlanB/vite-theme.git
+```
+or from a local sibling checkout:
 ```sh
 npm install ../lugano-planb-vite-theme
-```
-
-Or install from git once the repo is published:
-
-```sh
-npm install git+ssh://<host>/lugano-planb-vite-theme.git
 ```
 
 In the target app entrypoint:
