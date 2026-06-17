@@ -4,6 +4,7 @@ import {
   createPlanBHeader,
   createPlanBPageShell,
   defaultPlanBThemeContent,
+  initializePlanBThemeToggle,
 } from "./theme/index.js";
 
 const app = document.querySelector("#app");
@@ -14,25 +15,27 @@ app.replaceChildren(
     mainContent: `
       <section class="planb-panel">
         <div class="planb-section-heading">
-          <p class="planb-eyebrow">Reusable Theme</p>
-          <h2>Drop the same shell into other Vite apps.</h2>
+          <p class="planb-eyebrow">Light Blue</p>
+          <h2>One theme shell, two color modes, same package shape.</h2>
           <p>
-            This repo exposes the theme CSS and a small DOM API so another Vite app can import the
-            style layer, mount the header, and keep its own content untouched.
+            This branch keeps the existing font stack and public API, but now exposes a light mode
+            and a dark mode that follow the browser or operating system setting automatically.
           </p>
         </div>
       </section>
 
       <section class="planb-panel planb-grid">
         <article class="planb-card">
-          <h3>What is included</h3>
-          <p>Theme tokens, page shell styles, responsive header markup, and the Plan B hero image.</p>
+          <h3>Visual direction</h3>
+          <p>Theme tokens, page shell styles, responsive header markup, the shared hero image, and coordinated light or dark palettes.</p>
         </article>
         <article class="planb-card">
-          <h3>What is not included</h3>
-          <p>Radar content, data files, or any page-specific business content from the source project.</p>
+          <h3>What stayed fixed</h3>
+          <p>The existing font stack, DOM helpers, class namespace, and framework-agnostic package surface.</p>
         </article>
       </section>
     `,
   }),
 );
+
+initializePlanBThemeToggle();

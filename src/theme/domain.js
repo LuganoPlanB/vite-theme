@@ -7,9 +7,9 @@ export function createDefaultPlanBThemeContent() {
   return {
     header: {
       eyebrow: "Lugano Plan B",
-      title: "Shared Vite theme",
+      title: "Light blue theme variation",
       lede:
-        "A reusable shell extracted from the Plan B tech radar so other Vite sites can adopt the same header and visual language without copying application content.",
+        "A brighter shared shell with calm blue surfaces, crisp contrast, and a more optimistic hardware-style finish for other Vite apps to reuse.",
     },
   };
 }

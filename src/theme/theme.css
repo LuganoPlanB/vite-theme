@@ -1,18 +1,241 @@
 :root {
   --planb-font-family: "Inter", "Segoe UI", Arial, sans-serif;
-  --planb-color-canvas: #171717;
-  --planb-color-panel: #211d1d;
-  --planb-color-text: #ffffff;
-  --planb-color-text-soft: rgba(255, 255, 255, 0.72);
-  --planb-color-coral: #e15364;
-  --planb-gradient-heading: linear-gradient(90deg, #f7931a 4%, #e15364 45%);
-  --planb-gradient-hero: linear-gradient(132deg, rgba(247, 147, 26, 0.58) -1.7%, rgba(183, 51, 67, 0.58) 85%);
-  --planb-shadow-panel: 0 30px 80px rgba(0, 0, 0, 0.32);
-  --planb-border-soft: 1px solid rgba(255, 255, 255, 0.08);
+  color-scheme: light dark;
+
+  --planb-color-canvas: #fffefa;
+  --planb-color-canvas-alt: #f3f9ff;
+  --planb-color-panel: #fcfcfc;
+  --planb-color-panel-strong: #f3f8fd;
+  --planb-color-text: #030b20;
+  --planb-color-text-soft: rgba(3, 11, 32, 0.72);
+  --planb-color-accent: #4f97e9;
+  --planb-color-accent-soft: #b0d3f1;
+  --planb-color-accent-strong: #082952;
+  --planb-color-highlight: #ffb604;
+  --planb-color-neon-cyan: #23f5ff;
+  --planb-color-neon-violet: #7468ff;
+  --planb-color-neon-pink: #ff5db1;
+  --planb-gradient-rainbow: linear-gradient(90deg, #ffb604 0%, #ff5db1 28%, #7468ff 58%, #23f5ff 100%);
+  --planb-gradient-heading: linear-gradient(90deg, #082952 0%, #4f97e9 32%, #7468ff 64%, #23f5ff 100%);
+  --planb-gradient-hero:
+    radial-gradient(circle at top left, rgba(176, 211, 241, 0.34), transparent 34%),
+    radial-gradient(circle at 85% 18%, rgba(79, 151, 233, 0.14), transparent 26%),
+    radial-gradient(circle at 72% 22%, rgba(255, 93, 177, 0.08), transparent 18%),
+    radial-gradient(circle at 82% 44%, rgba(35, 245, 255, 0.12), transparent 16%),
+    linear-gradient(145deg, rgba(255, 255, 255, 0.3) 0%, rgba(243, 249, 255, 0.2) 62%, rgba(176, 211, 241, 0.2) 100%);
+  --planb-border-soft: 1px solid rgba(79, 151, 233, 0.2);
+  --planb-border-strong: 1px solid rgba(79, 151, 233, 0.38);
+  --planb-body-background:
+    radial-gradient(circle at top left, rgba(176, 211, 241, 0.45), transparent 24%),
+    radial-gradient(circle at top right, rgba(79, 151, 233, 0.16), transparent 18%),
+    linear-gradient(180deg, #ffffff 0%, #f7fbff 40%, #fffefa 100%),
+    var(--planb-color-canvas);
+  --planb-hero-background:
+    url("./assets/front_hero_desktop_frame.jpg") center / cover no-repeat,
+    linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.28)),
+    var(--planb-color-canvas-alt);
+  --planb-hero-line-shadow:
+    0 0 20px rgba(255, 93, 177, 0.28),
+    0 0 32px rgba(35, 245, 255, 0.32);
+  --planb-hero-orb-background: radial-gradient(circle, rgba(35, 245, 255, 0.26) 0%, rgba(116, 104, 255, 0.12) 40%, transparent 72%);
+  --planb-hero-title-shadow:
+    0 2px 12px rgba(255, 255, 255, 0.42),
+    0 10px 30px rgba(8, 41, 82, 0.18);
+  --planb-eyebrow-background: rgba(255, 255, 255, 0.72);
+  --planb-eyebrow-shadow: 0 12px 24px rgba(8, 41, 82, 0.08);
+  --planb-eyebrow-dot-background: var(--planb-gradient-rainbow);
+  --planb-eyebrow-dot-shadow:
+    0 0 0 4px rgba(79, 151, 233, 0.12),
+    0 0 12px rgba(35, 245, 255, 0.24);
+  --planb-shadow-panel:
+    0 24px 60px rgba(8, 41, 82, 0.12),
+    inset -10px -10px 18px rgba(8, 41, 82, 0.08);
+  --planb-panel-background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(243, 249, 255, 0.98)),
+    var(--planb-color-panel);
+  --planb-panel-bar-shadow: 0 0 18px rgba(35, 245, 255, 0.2);
+  --planb-card-background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.9), rgba(243, 248, 253, 0.92)),
+    var(--planb-color-panel-strong);
+  --planb-card-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.72),
+    0 16px 36px rgba(8, 41, 82, 0.08);
+  --planb-card-orb-background: radial-gradient(circle, rgba(255, 93, 177, 0.12) 0%, rgba(35, 245, 255, 0.08) 48%, transparent 70%);
+  accent-color: var(--planb-color-accent);
+  scrollbar-color: color-mix(in srgb, var(--planb-color-accent) 68%, transparent) color-mix(in srgb, var(--planb-color-canvas-alt) 88%, transparent);
+  scrollbar-width: thin;
 }
 
-* {
-  box-sizing: border-box;
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]):not([data-theme="dark"]) {
+    --planb-color-canvas: #171717;
+    --planb-color-canvas-alt: #1a1717;
+    --planb-color-panel: #211d1d;
+    --planb-color-panel-strong: #292424;
+    --planb-color-text: #ffffff;
+    --planb-color-text-soft: rgba(255, 255, 255, 0.72);
+    --planb-color-accent: #e15364;
+    --planb-color-accent-soft: rgba(255, 255, 255, 0.12);
+    --planb-color-accent-strong: #ffffff;
+    --planb-color-highlight: #f7931a;
+    --planb-color-neon-cyan: #23f5ff;
+    --planb-color-neon-violet: #7468ff;
+    --planb-color-neon-pink: #ff5db1;
+    --planb-gradient-rainbow: linear-gradient(90deg, #f7931a 0%, #ff5db1 34%, #7468ff 68%, #23f5ff 100%);
+    --planb-gradient-heading: linear-gradient(90deg, #f7931a 4%, #e15364 45%, #ff5db1 100%);
+    --planb-gradient-hero:
+      radial-gradient(circle at top left, rgba(247, 147, 26, 0.22), transparent 28%),
+      radial-gradient(circle at top right, rgba(225, 83, 100, 0.18), transparent 24%),
+      radial-gradient(circle at 82% 42%, rgba(116, 104, 255, 0.14), transparent 18%),
+      linear-gradient(132deg, rgba(247, 147, 26, 0.5) -1.7%, rgba(183, 51, 67, 0.46) 85%);
+    --planb-border-soft: 1px solid rgba(255, 255, 255, 0.08);
+    --planb-border-strong: 1px solid rgba(255, 255, 255, 0.16);
+    --planb-body-background:
+      radial-gradient(circle at top left, rgba(247, 147, 26, 0.18), transparent 28%),
+      radial-gradient(circle at top right, rgba(225, 83, 100, 0.16), transparent 24%),
+      linear-gradient(180deg, rgba(23, 23, 23, 0.98), rgba(26, 22, 22, 1)),
+      var(--planb-color-canvas);
+    --planb-hero-background:
+      url("./assets/front_hero_desktop_frame.jpg") center / cover no-repeat,
+      linear-gradient(180deg, rgba(0, 0, 0, 0.12), rgba(0, 0, 0, 0.42)),
+      var(--planb-color-canvas);
+    --planb-hero-line-shadow:
+      0 0 20px rgba(247, 147, 26, 0.24),
+      0 0 28px rgba(225, 83, 100, 0.2);
+    --planb-hero-orb-background: radial-gradient(circle, rgba(225, 83, 100, 0.22) 0%, rgba(247, 147, 26, 0.12) 42%, transparent 72%);
+    --planb-hero-title-shadow:
+      0 2px 8px rgba(0, 0, 0, 0.75),
+      0 10px 28px rgba(0, 0, 0, 0.55);
+    --planb-eyebrow-background: rgba(19, 17, 17, 0.7);
+    --planb-eyebrow-shadow: 0 12px 24px rgba(0, 0, 0, 0.28);
+    --planb-eyebrow-dot-background: linear-gradient(180deg, var(--planb-color-highlight), var(--planb-color-accent));
+    --planb-eyebrow-dot-shadow:
+      0 0 0 4px rgba(247, 147, 26, 0.12),
+      0 0 12px rgba(225, 83, 100, 0.18);
+    --planb-shadow-panel: 0 30px 80px rgba(0, 0, 0, 0.32);
+    --planb-panel-background: linear-gradient(180deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.015));
+    --planb-panel-bar-shadow: 0 0 18px rgba(247, 147, 26, 0.12);
+    --planb-card-background: var(--planb-color-panel);
+    --planb-card-shadow: none;
+    --planb-card-orb-background: radial-gradient(circle, rgba(247, 147, 26, 0.14) 0%, rgba(225, 83, 100, 0.09) 46%, transparent 70%);
+  }
+}
+
+:root[data-theme="light"] {
+  color-scheme: light;
+  --planb-color-canvas: #fffefa;
+  --planb-color-canvas-alt: #f3f9ff;
+  --planb-color-panel: #fcfcfc;
+  --planb-color-panel-strong: #f3f8fd;
+  --planb-color-text: #030b20;
+  --planb-color-text-soft: rgba(3, 11, 32, 0.72);
+  --planb-color-accent: #4f97e9;
+  --planb-color-accent-soft: #b0d3f1;
+  --planb-color-accent-strong: #082952;
+  --planb-color-highlight: #ffb604;
+  --planb-color-neon-cyan: #23f5ff;
+  --planb-color-neon-violet: #7468ff;
+  --planb-color-neon-pink: #ff5db1;
+  --planb-gradient-rainbow: linear-gradient(90deg, #ffb604 0%, #ff5db1 28%, #7468ff 58%, #23f5ff 100%);
+  --planb-gradient-heading: linear-gradient(90deg, #082952 0%, #4f97e9 32%, #7468ff 64%, #23f5ff 100%);
+  --planb-gradient-hero:
+    radial-gradient(circle at top left, rgba(176, 211, 241, 0.9), transparent 34%),
+    radial-gradient(circle at 85% 18%, rgba(79, 151, 233, 0.3), transparent 26%),
+    radial-gradient(circle at 72% 22%, rgba(255, 93, 177, 0.2), transparent 18%),
+    radial-gradient(circle at 82% 44%, rgba(35, 245, 255, 0.26), transparent 16%),
+    linear-gradient(145deg, rgba(255, 255, 255, 0.96) 0%, rgba(243, 249, 255, 0.94) 62%, rgba(176, 211, 241, 0.9) 100%);
+  --planb-border-soft: 1px solid rgba(79, 151, 233, 0.2);
+  --planb-border-strong: 1px solid rgba(79, 151, 233, 0.38);
+  --planb-body-background:
+    radial-gradient(circle at top left, rgba(176, 211, 241, 0.45), transparent 24%),
+    radial-gradient(circle at top right, rgba(79, 151, 233, 0.16), transparent 18%),
+    linear-gradient(180deg, #ffffff 0%, #f7fbff 40%, #fffefa 100%),
+    var(--planb-color-canvas);
+  --planb-hero-background:
+    url("./assets/front_hero_desktop_frame.jpg") center / cover no-repeat,
+    linear-gradient(180deg, rgba(255, 255, 255, 0.45), rgba(255, 255, 255, 0.78)),
+    var(--planb-color-canvas-alt);
+  --planb-hero-line-shadow:
+    0 0 20px rgba(255, 93, 177, 0.28),
+    0 0 32px rgba(35, 245, 255, 0.32);
+  --planb-hero-orb-background: radial-gradient(circle, rgba(35, 245, 255, 0.26) 0%, rgba(116, 104, 255, 0.12) 40%, transparent 72%);
+  --planb-hero-title-shadow:
+    0 0 18px rgba(35, 245, 255, 0.16),
+    0 0 28px rgba(116, 104, 255, 0.08);
+  --planb-eyebrow-background: rgba(255, 255, 255, 0.72);
+  --planb-eyebrow-shadow: 0 12px 24px rgba(8, 41, 82, 0.08);
+  --planb-eyebrow-dot-background: var(--planb-gradient-rainbow);
+  --planb-eyebrow-dot-shadow:
+    0 0 0 4px rgba(79, 151, 233, 0.12),
+    0 0 12px rgba(35, 245, 255, 0.24);
+  --planb-shadow-panel:
+    0 24px 60px rgba(8, 41, 82, 0.12),
+    inset -10px -10px 18px rgba(8, 41, 82, 0.08);
+  --planb-panel-background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(243, 249, 255, 0.98)),
+    var(--planb-color-panel);
+  --planb-panel-bar-shadow: 0 0 18px rgba(35, 245, 255, 0.2);
+  --planb-card-background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.9), rgba(243, 248, 253, 0.92)),
+    var(--planb-color-panel-strong);
+  --planb-card-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.72),
+    0 16px 36px rgba(8, 41, 82, 0.08);
+  --planb-card-orb-background: radial-gradient(circle, rgba(255, 93, 177, 0.12) 0%, rgba(35, 245, 255, 0.08) 48%, transparent 70%);
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --planb-color-canvas: #171717;
+  --planb-color-canvas-alt: #1a1717;
+  --planb-color-panel: #211d1d;
+  --planb-color-panel-strong: #292424;
+  --planb-color-text: #ffffff;
+  --planb-color-text-soft: rgba(255, 255, 255, 0.72);
+  --planb-color-accent: #e15364;
+  --planb-color-accent-soft: rgba(255, 255, 255, 0.12);
+  --planb-color-accent-strong: #ffffff;
+  --planb-color-highlight: #f7931a;
+  --planb-color-neon-cyan: #23f5ff;
+  --planb-color-neon-violet: #7468ff;
+  --planb-color-neon-pink: #ff5db1;
+  --planb-gradient-rainbow: linear-gradient(90deg, #f7931a 0%, #ff5db1 34%, #7468ff 68%, #23f5ff 100%);
+  --planb-gradient-heading: linear-gradient(90deg, #f7931a 4%, #e15364 45%, #ff5db1 100%);
+  --planb-gradient-hero:
+    radial-gradient(circle at top left, rgba(247, 147, 26, 0.22), transparent 28%),
+    radial-gradient(circle at top right, rgba(225, 83, 100, 0.18), transparent 24%),
+    radial-gradient(circle at 82% 42%, rgba(116, 104, 255, 0.14), transparent 18%),
+    linear-gradient(132deg, rgba(247, 147, 26, 0.5) -1.7%, rgba(183, 51, 67, 0.46) 85%);
+  --planb-border-soft: 1px solid rgba(255, 255, 255, 0.08);
+  --planb-border-strong: 1px solid rgba(255, 255, 255, 0.16);
+  --planb-body-background:
+    radial-gradient(circle at top left, rgba(247, 147, 26, 0.18), transparent 28%),
+    radial-gradient(circle at top right, rgba(225, 83, 100, 0.16), transparent 24%),
+    linear-gradient(180deg, rgba(23, 23, 23, 0.98), rgba(26, 22, 22, 1)),
+    var(--planb-color-canvas);
+  --planb-hero-background:
+    url("./assets/front_hero_desktop_frame.jpg") center / cover no-repeat,
+    linear-gradient(180deg, rgba(0, 0, 0, 0.12), rgba(0, 0, 0, 0.42)),
+    var(--planb-color-canvas);
+  --planb-hero-line-shadow:
+    0 0 20px rgba(247, 147, 26, 0.24),
+    0 0 28px rgba(225, 83, 100, 0.2);
+  --planb-hero-orb-background: radial-gradient(circle, rgba(225, 83, 100, 0.22) 0%, rgba(247, 147, 26, 0.12) 42%, transparent 72%);
+  --planb-hero-title-shadow:
+    0 2px 8px rgba(0, 0, 0, 0.75),
+    0 10px 28px rgba(0, 0, 0, 0.55);
+  --planb-eyebrow-background: rgba(19, 17, 17, 0.7);
+  --planb-eyebrow-shadow: 0 12px 24px rgba(0, 0, 0, 0.28);
+  --planb-eyebrow-dot-background: linear-gradient(180deg, var(--planb-color-highlight), var(--planb-color-accent));
+  --planb-eyebrow-dot-shadow:
+    0 0 0 4px rgba(247, 147, 26, 0.12),
+    0 0 12px rgba(225, 83, 100, 0.18);
+  --planb-shadow-panel: 0 30px 80px rgba(0, 0, 0, 0.32);
+  --planb-panel-background: linear-gradient(180deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.015));
+  --planb-panel-bar-shadow: 0 0 18px rgba(247, 147, 26, 0.12);
+  --planb-card-background: var(--planb-color-panel);
+  --planb-card-shadow: none;
+  --planb-card-orb-background: radial-gradient(circle, rgba(247, 147, 26, 0.14) 0%, rgba(225, 83, 100, 0.09) 46%, transparent 70%);
 }
 
 html,
@@ -21,13 +244,16 @@ body {
   min-height: 100%;
 }
 
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
 body {
   font-family: var(--planb-font-family);
   color: var(--planb-color-text);
-  background:
-    radial-gradient(circle at top left, rgba(247, 147, 26, 0.18), transparent 28%),
-    radial-gradient(circle at top right, rgba(225, 83, 100, 0.16), transparent 24%),
-    var(--planb-color-canvas);
+  background: var(--planb-body-background);
 }
 
 a {
@@ -46,7 +272,7 @@ h3 {
 }
 
 .planb-page-shell {
-  min-height: 100vh;
+  min-height: 100dvh;
 }
 
 .planb-container {
@@ -57,18 +283,42 @@ h3 {
 .planb-hero {
   position: relative;
   overflow: hidden;
-  min-height: 54vh;
+  min-height: 54dvh;
   border-bottom: var(--planb-border-soft);
-  background:
-    linear-gradient(180deg, rgba(0, 0, 0, 0.12), rgba(0, 0, 0, 0.42)),
-    url("./assets/front_hero_desktop_frame.jpg") center / cover no-repeat,
-    var(--planb-color-canvas);
+  background: var(--planb-hero-background);
 }
 
 .planb-hero__overlay {
   position: absolute;
   inset: 0;
   background: var(--planb-gradient-hero);
+  opacity: 0.82;
+}
+
+.planb-hero::before {
+  content: "";
+  position: absolute;
+  inset: auto 10% 8% auto;
+  width: min(28rem, 34vw);
+  height: 0.32rem;
+  border-radius: 999px;
+  background: var(--planb-gradient-rainbow);
+  box-shadow: var(--planb-hero-line-shadow);
+  opacity: 0.95;
+  pointer-events: none;
+}
+
+.planb-hero::after {
+  content: "";
+  position: absolute;
+  inset: auto 12% 5% auto;
+  width: min(16rem, 28vw);
+  height: min(16rem, 28vw);
+  border-radius: 999px;
+  background: var(--planb-hero-orb-background);
+  filter: blur(12px);
+  opacity: 0.9;
+  pointer-events: none;
 }
 
 .planb-hero__inner,
@@ -82,35 +332,84 @@ h3 {
 }
 
 .planb-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  width: fit-content;
   margin: 0 0 16px;
-  color: var(--planb-color-text);
-  font-size: 0.95rem;
+  padding: 0.55rem 0.95rem;
+  border: var(--planb-border-strong);
+  border-radius: 999px;
+  background: var(--planb-eyebrow-background);
+  color: var(--planb-color-accent-strong);
+  font-size: 0.82rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  text-shadow:
-    0 2px 8px rgba(0, 0, 0, 0.72),
-    0 8px 24px rgba(0, 0, 0, 0.45);
+  box-shadow: var(--planb-eyebrow-shadow);
+}
+
+.planb-theme-toggle {
+  justify-self: end;
+  align-self: start;
+  min-width: 7.75rem;
+  min-height: 2.75rem;
+  padding: 0.7rem 1rem;
+  border: var(--planb-border-strong);
+  border-radius: 999px;
+  background:
+    linear-gradient(180deg, color-mix(in srgb, var(--planb-color-panel) 92%, white 8%), color-mix(in srgb, var(--planb-color-panel-strong) 96%, transparent)),
+    var(--planb-color-panel);
+  color: var(--planb-color-accent-strong);
+  font: inherit;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  box-shadow: 0 12px 24px color-mix(in srgb, var(--planb-color-text) 10%, transparent);
+  transition:
+    transform 160ms ease,
+    border-color 160ms ease,
+    box-shadow 160ms ease;
+}
+
+.planb-theme-toggle:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 16px 30px color-mix(in srgb, var(--planb-color-accent) 20%, transparent);
+}
+
+.planb-theme-toggle:focus-visible {
+  outline: 2px solid var(--planb-color-neon-cyan);
+  outline-offset: 3px;
+}
+
+.planb-eyebrow::before {
+  content: "";
+  width: 0.62rem;
+  height: 0.62rem;
+  border-radius: 999px;
+  background: var(--planb-eyebrow-dot-background);
+  box-shadow: var(--planb-eyebrow-dot-shadow);
 }
 
 .planb-main h2 {
-  display: inline-block;
-  color: var(--planb-color-coral);
+  color: var(--planb-color-accent);
   background: var(--planb-gradient-heading);
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   padding-bottom: 0.08em;
+  text-wrap: balance;
 }
 
 .planb-hero h1 {
-  color: #ffffff;
-  max-width: 12ch;
+  color: var(--planb-color-accent-strong);
+  max-width: 11ch;
   font-size: clamp(3rem, 8vw, 4.75rem);
   font-weight: 800;
   line-height: 1.08;
-  text-shadow:
-    0 2px 8px rgba(0, 0, 0, 0.75),
-    0 10px 28px rgba(0, 0, 0, 0.55);
+  text-wrap: balance;
+  text-shadow: var(--planb-hero-title-shadow);
 }
 
 .planb-main h2 {
@@ -123,6 +422,8 @@ h3 {
   font-size: clamp(1.3rem, 2.6vw, 2rem);
   font-weight: 700;
   line-height: 1.15;
+  color: var(--planb-color-accent-strong);
+  text-wrap: balance;
 }
 
 .planb-lede,
@@ -136,9 +437,7 @@ h3 {
   margin: 20px 0 0;
   font-size: clamp(1rem, 2vw, 1.35rem);
   line-height: 1.5;
-  text-shadow:
-    0 2px 8px rgba(0, 0, 0, 0.72),
-    0 8px 24px rgba(0, 0, 0, 0.45);
+  text-wrap: pretty;
 }
 
 .planb-main {
@@ -150,8 +449,21 @@ h3 {
   padding: 32px;
   border: var(--planb-border-soft);
   border-radius: 28px;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.015));
+  background: var(--planb-panel-background);
   box-shadow: var(--planb-shadow-panel);
+  position: relative;
+  overflow: hidden;
+}
+
+.planb-panel::before {
+  content: "";
+  position: absolute;
+  inset: 0 auto auto 0;
+  width: 12rem;
+  height: 0.38rem;
+  border-radius: 999px;
+  background: var(--planb-gradient-rainbow);
+  box-shadow: var(--planb-panel-bar-shadow);
 }
 
 .planb-panel:first-child {
@@ -168,6 +480,7 @@ h3 {
   max-width: 56rem;
   font-size: 1rem;
   line-height: 1.6;
+  text-wrap: pretty;
 }
 
 .planb-grid {
@@ -179,17 +492,35 @@ h3 {
 .planb-card {
   border-radius: 22px;
   border: var(--planb-border-soft);
-  background: var(--planb-color-panel);
+  background: var(--planb-card-background);
   padding: 22px;
+  box-shadow: var(--planb-card-shadow);
+  position: relative;
+  overflow: hidden;
+}
+
+.planb-card::before {
+  content: "";
+  position: absolute;
+  inset: auto -12% -20% auto;
+  width: 10rem;
+  height: 10rem;
+  border-radius: 999px;
+  background: var(--planb-card-orb-background);
+  pointer-events: none;
 }
 
 .planb-card p:last-child {
   margin-bottom: 0;
 }
 
+.planb-card h3 {
+  margin-bottom: 0.7rem;
+}
+
 @media (min-width: 960px) {
   .planb-hero {
-    min-height: 44vh;
+    min-height: 44dvh;
   }
 
   .planb-hero__inner {
@@ -201,8 +532,13 @@ h3 {
   }
 
   .planb-eyebrow {
-    grid-column: 1 / -1;
+    grid-column: 1 / 2;
     margin-bottom: 20px;
+  }
+
+  .planb-theme-toggle {
+    grid-column: 2 / 3;
+    margin-left: auto;
   }
 
   .planb-hero h1 {
@@ -222,6 +558,11 @@ h3 {
 
   .planb-hero__inner {
     padding: 68px 0 72px;
+  }
+
+  .planb-theme-toggle {
+    justify-self: start;
+    margin-bottom: 1rem;
   }
 
   .planb-panel {

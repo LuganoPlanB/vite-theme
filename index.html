@@ -3,6 +3,18 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="color-scheme" content="light dark">
+    <script>
+      {
+        const preference = localStorage.getItem("planb-color-scheme");
+        const metaColorScheme = document.querySelector('meta[name="color-scheme"]');
+
+        if (preference === "light" || preference === "dark") {
+          document.documentElement.dataset.theme = preference;
+          metaColorScheme.content = preference;
+        }
+      }
+    </script>
     <title>Lugano Plan B Vite Theme</title>
   </head>
   <body>
