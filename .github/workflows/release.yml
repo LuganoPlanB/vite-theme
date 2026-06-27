@@ -65,7 +65,7 @@ jobs:
             fs.writeFileSync('release/${PKG}/package.json', JSON.stringify(pkg, null, 2) + '\n');
           " "${VERSION}"
 
-          tar -czf "release/${PKG}-${VERSION}.tar.gz" -C release "${PKG}"
+          tar -czf "release/${PKG}.tar.gz" -C release "${PKG}"
 
       - name: Create GitHub Release
         if: steps.semver.outputs.bump != 'none'
