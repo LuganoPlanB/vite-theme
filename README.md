@@ -72,13 +72,13 @@ For simpler host apps, `mountPlanBHeader` remains available when only the hero i
 
 ## Install from a release archive
 
-Every tagged release publishes a `lugano-planb-vite-theme-X.Y.Z.tar.gz` on the
+Every tagged release publishes `lugano-planb-vite-theme.tar.gz` on the
 [GitHub Releases](https://github.com/LuganoPlanB/vite-theme/releases) page.
 Download the latest archive and extract it into your project:
 
 ```sh
-curl -LO https://github.com/LuganoPlanB/vite-theme/releases/latest/download/lugano-planb-vite-theme-0.1.0.tar.gz
-tar -xzf lugano-planb-vite-theme-0.1.0.tar.gz -C src/
+curl -LO https://github.com/LuganoPlanB/vite-theme/releases/latest/download/lugano-planb-vite-theme.tar.gz
+tar -xzf lugano-planb-vite-theme.tar.gz -C src/
 ```
 
 The archive unpacks a self-contained `lugano-planb-vite-theme/` directory with
@@ -114,8 +114,8 @@ For VitePress sites the pattern is the same. After extracting into `.vitepress/t
 
 ```sh
 # one-time setup
-curl -LO https://github.com/LuganoPlanB/vite-theme/releases/latest/download/lugano-planb-vite-theme-0.1.0.tar.gz
-tar -xzf lugano-planb-vite-theme-0.1.0.tar.gz -C .vitepress/theme/
+curl -LO https://github.com/LuganoPlanB/vite-theme/releases/latest/download/lugano-planb-vite-theme.tar.gz
+tar -xzf lugano-planb-vite-theme.tar.gz -C .vitepress/theme/
 ```
 
 Then in `.vitepress/theme/index.js`:
