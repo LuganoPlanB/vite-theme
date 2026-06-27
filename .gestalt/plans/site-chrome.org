@@ -3,7 +3,7 @@
 #+DATE: 2026-06-27
 #+KEYWORDS: vite theme header footer navigation landmarks
 
-* WIP [#A] Add reusable site header and footer
+* DONE [#A] Add reusable site header and footer
 :PROPERTIES:
 :Effort: 3h
 :Goal: Add professional site chrome that works with the existing hero, panels, and showcase elements.
