@@ -347,12 +347,17 @@ h3 {
 }
 
 .planb-theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
   justify-self: end;
   align-self: start;
   min-width: 7.75rem;
   min-height: 2.75rem;
   padding: 0.7rem 1rem;
-  border: none;
+  border: var(--planb-border-soft);
+  border-radius: 999px;
   background:
     linear-gradient(90deg, transparent 0%, color-mix(in srgb, var(--planb-color-panel) 92%, white 8%) 15%, color-mix(in srgb, var(--planb-color-panel-strong) 96%, transparent) 85%, transparent 100%),
     var(--planb-color-panel);
@@ -370,7 +375,17 @@ h3 {
     box-shadow 160ms ease;
 }
 
+.planb-theme-toggle::before {
+  content: "";
+  width: 0.72rem;
+  height: 0.72rem;
+  border-radius: 999px;
+  background: var(--planb-gradient-rainbow);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--planb-color-accent) 14%, transparent);
+}
+
 .planb-theme-toggle:hover {
+  border-color: color-mix(in srgb, var(--planb-color-accent) 44%, transparent);
   transform: translateY(-1px);
   box-shadow: 0 16px 30px color-mix(in srgb, var(--planb-color-accent) 20%, transparent);
 }

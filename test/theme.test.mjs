@@ -49,6 +49,7 @@ test("mountPlanBHeader prepends the header markup", () => {
   assert.match(header.innerHTML, /Custom/);
   assert.match(header.innerHTML, /Injected/);
   assert.match(header.innerHTML, /data-planb-theme-toggle/);
+  assert.match(header.innerHTML, /aria-pressed="false"/);
 });
 
 test("createPlanBPageShell appends header and main content", () => {
@@ -128,8 +129,9 @@ test("initializePlanBThemeToggle applies and persists manual theme preference", 
 
   const controls = initializePlanBThemeToggle({ documentRef, storage, mediaQueryList });
 
-  assert.equal(themeToggle.textContent, "Dark mode");
+  assert.equal(themeToggle.textContent, "Use dark");
   assert.equal(themeToggle.dataset.themeTarget, "dark");
+  assert.equal(themeToggle.attributes["aria-pressed"], "false");
   assert.equal(metaColorScheme.content, "light dark");
 
   listeners.get("click")();
@@ -137,6 +139,7 @@ test("initializePlanBThemeToggle applies and persists manual theme preference", 
   assert.equal(storage.getItem("planb-color-scheme"), "dark");
   assert.equal(root.dataset.theme, "dark");
   assert.equal(metaColorScheme.content, "dark");
-  assert.equal(themeToggle.textContent, "Light mode");
+  assert.equal(themeToggle.textContent, "Use light");
+  assert.equal(themeToggle.attributes["aria-pressed"], "true");
   assert.equal(controls.getPreference(), "dark");
 });

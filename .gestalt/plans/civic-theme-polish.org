@@ -26,7 +26,7 @@
 :Done when: The theme keeps its identity but feels cleaner, smoother, and more professional across the existing responsive breakpoints.
 :END:
 
-** TODO [#A] Improve toggle accessibility and preload the hero background
+** DONE [#A] Improve toggle accessibility and preload the hero background
 :PROPERTIES:
 :Why: The theme toggle should expose state clearly to assistive technologies, and the CSS hero background should be discovered early for better initial rendering.
 :Change: Add aria-pressed synchronization, polish toggle labels, update tests for the accessible state, and add a high-priority preload for the hero background image.
