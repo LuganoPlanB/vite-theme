@@ -110,6 +110,88 @@ app.replaceChildren(
           </li>
         </ol>
       </section>
+
+      <section class="planb-panel">
+        <div class="planb-section-heading">
+          <p class="planb-eyebrow">Library</p>
+          <h2>Research, whitepapers, and field notes.</h2>
+          <p>
+            Publication cards highlight academic work, implementation briefs, and whitepapers with
+            enough metadata for readers to judge relevance quickly.
+          </p>
+        </div>
+        <div class="planb-publication-grid">
+          <article class="planb-publication-card">
+            <p class="planb-card-kicker">Whitepaper · 2026</p>
+            <h3>Open Urban Data for Civic Prototyping</h3>
+            <p>How small teams can publish useful datasets, maintain trust, and support public-interest reuse.</p>
+            <dl class="planb-meta-list">
+              <div>
+                <dt>Authors</dt>
+                <dd>Plan B Research Group</dd>
+              </div>
+              <div>
+                <dt>Format</dt>
+                <dd>PDF · 24 pages</dd>
+              </div>
+            </dl>
+            <a class="planb-text-link" href="https://example.com/open-urban-data">Read whitepaper</a>
+          </article>
+          <article class="planb-publication-card">
+            <p class="planb-card-kicker">Academic brief · 2025</p>
+            <h3>Participation Patterns in Smart City Tooling</h3>
+            <p>A compact study of recurring contributor roles across hackathons, labs, and municipal pilots.</p>
+            <dl class="planb-meta-list">
+              <div>
+                <dt>Authors</dt>
+                <dd>Civic Lab Fellows</dd>
+              </div>
+              <div>
+                <dt>Format</dt>
+                <dd>Brief · 12 pages</dd>
+              </div>
+            </dl>
+            <a class="planb-text-link" href="https://example.com/participation-patterns">View publication</a>
+          </article>
+        </div>
+      </section>
+
+      <section class="planb-panel">
+        <div class="planb-section-heading">
+          <p class="planb-eyebrow">Software</p>
+          <h2>Open tools with clear paths to use and inspect.</h2>
+          <p>
+            Software cards separate the product homepage from source code so visitors can either
+            try the tool or audit how it works.
+          </p>
+        </div>
+        <div class="planb-software-grid">
+          <article class="planb-software-card">
+            <div class="planb-software-card__header">
+              <div class="planb-logo-mark" aria-hidden="true">CM</div>
+              <p class="planb-card-kicker">Mapping toolkit</p>
+            </div>
+            <h3>Civic Map Kit</h3>
+            <p>Reusable map components for neighborhood indicators, service layers, and public feedback loops.</p>
+            <div class="planb-action-row">
+              <a class="planb-button-link" href="https://example.com/civic-map-kit">Homepage</a>
+              <a class="planb-text-link" href="https://github.com/example/civic-map-kit">GitHub source</a>
+            </div>
+          </article>
+          <article class="planb-software-card">
+            <div class="planb-software-card__header">
+              <div class="planb-logo-mark" aria-hidden="true">SD</div>
+              <p class="planb-card-kicker">Dashboard starter</p>
+            </div>
+            <h3>Service Dashboard Starter</h3>
+            <p>A minimal Vite shell for publishing service metrics, project health, and civic program updates.</p>
+            <div class="planb-action-row">
+              <a class="planb-button-link" href="https://example.com/service-dashboard">Homepage</a>
+              <a class="planb-text-link" href="https://github.com/example/service-dashboard">GitHub source</a>
+            </div>
+          </article>
+        </div>
+      </section>
     `,
   }),
 );

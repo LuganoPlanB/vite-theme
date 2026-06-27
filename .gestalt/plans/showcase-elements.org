@@ -18,7 +18,7 @@
 :Done when: The demo has a polished logo-card panel and timeline panel that work with the existing visual language.
 :END:
 
-** TODO [#A] Add publication and software cards
+** DONE [#A] Add publication and software cards
 :PROPERTIES:
 :Why: A civic foundation site needs credible patterns for academic publications, whitepapers, software projects, homepages, and source links.
 :Change: Add publication cards and software cards with semantic metadata, clear actions, and responsive layouts.
