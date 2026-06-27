@@ -108,6 +108,18 @@ import {
 } from "./lugano-planb-vite-theme/index.js";
 ```
 
+### GitHub Action
+
+Add a single step to your deploy workflow — the action auto-detects Vite or
+VitePress and extracts the latest theme into the right directory:
+
+```yaml
+- uses: LuganoPlanB/vite-theme/.github/actions/apply@v0.1.0
+```
+
+It checks for `.vitepress/` or `docs/.vitepress/` and extracts into
+`.vitepress/theme/` for VitePress, or `src/` for plain Vite projects.
+
 ### VitePress adoption
 
 For VitePress sites the pattern is the same. After extracting into `.vitepress/theme/`:

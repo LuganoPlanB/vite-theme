@@ -1,0 +1,67 @@
+name: Apply Plan B Vite Theme
+description: Download and extract the Plan B theme into a Vite or VitePress website
+
+inputs:
+  target:
+    description: Project type — auto, vite, or vitepress
+    required: false
+    default: auto
+  token:
+    description: GitHub token with read access to releases
+    required: false
+    default: ${{ github.token }}
+
+outputs:
+  path:
+    description: Relative path where the theme was extracted
+    value: ${{ steps.extract.outputs.path }}
+  mode:
+    description: Detected project type (vite or vitepress)
+    value: ${{ steps.detect.outputs.mode }}
+
+runs:
+  using: composite
+  steps:
+    - name: Detect project type
+      id: detect
+      shell: bash
+      run: |
+        MODE="${{ inputs.target }}"
+        if [ "$MODE" = "auto" ]; then
+          if [ -f "docs/.vitepress/config.js" ] || [ -f "docs/.vitepress/config.ts" ] || [ -f "docs/.vitepress/config.mjs" ]; then
+            MODE="vitepress"
+          elif [ -d ".vitepress" ]; then
+            MODE="vitepress"
+          else
+            MODE="vite"
+          fi
+        fi
+        echo "mode=$MODE" >> "$GITHUB_OUTPUT"
+
+    - name: Set extraction path
+      id: path
+      shell: bash
+      run: |
+        if [ "${{ steps.detect.outputs.mode }}" = "vitepress" ]; then
+          if [ -d ".vitepress" ]; then
+            echo "dest=.vitepress/theme/" >> "$GITHUB_OUTPUT"
+          else
+            echo "dest=docs/.vitepress/theme/" >> "$GITHUB_OUTPUT"
+          fi
+        else
+          echo "dest=src/" >> "$GITHUB_OUTPUT"
+        fi
+
+    - name: Download and extract theme
+      id: extract
+      shell: bash
+      env:
+        GH_TOKEN: ${{ inputs.token }}
+      run: |
+        echo "[planb-theme] downloading latest release" >&2
+        gh release download --repo LuganoPlanB/vite-theme --pattern 'lugano-planb-vite-theme.tar.gz'
+        mkdir -p "${{ steps.path.outputs.dest }}"
+        tar -xzf lugano-planb-vite-theme.tar.gz -C "${{ steps.path.outputs.dest }}"
+        rm -f lugano-planb-vite-theme.tar.gz
+        echo "path=${{ steps.path.outputs.dest }}lugano-planb-vite-theme" >> "$GITHUB_OUTPUT"
+        echo "[planb-theme] extracted to ${{ steps.path.outputs.dest }}lugano-planb-vite-theme" >&2
