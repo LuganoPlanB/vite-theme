@@ -70,6 +70,72 @@ Then render the rest of the page as usual below the header.
 
 For simpler host apps, `mountPlanBHeader` remains available when only the hero is needed.
 
+## Install from a release archive
+
+Every tagged release publishes a `lugano-planb-vite-theme-X.Y.Z.tar.gz` on the
+[GitHub Releases](https://github.com/LuganoPlanB/vite-theme/releases) page.
+Download the latest archive and extract it into your project:
+
+```sh
+curl -LO https://github.com/LuganoPlanB/vite-theme/releases/latest/download/lugano-planb-vite-theme-0.1.0.tar.gz
+tar -xzf lugano-planb-vite-theme-0.1.0.tar.gz -C src/
+```
+
+The archive unpacks a self-contained `lugano-planb-vite-theme/` directory with
+its own `package.json`. Two integration modes are supported:
+
+### A. Local npm dependency (recommended)
+
+Register the extracted directory as a local dependency so you can keep the
+bare-specifier imports shown in the sections above:
+
+```sh
+npm install ./src/lugano-planb-vite-theme
+```
+
+### B. Direct relative imports (zero-config drop-in)
+
+Import the files by their relative path — no `npm install` required:
+
+```js
+import "./lugano-planb-vite-theme/theme.css";
+import {
+  createPlanBFooter,
+  createPlanBHeader,
+  createPlanBPageShell,
+  createPlanBSiteHeader,
+  defaultPlanBThemeContent,
+} from "./lugano-planb-vite-theme/index.js";
+```
+
+### VitePress adoption
+
+For VitePress sites the pattern is the same. After extracting into `.vitepress/theme/`:
+
+```sh
+# one-time setup
+curl -LO https://github.com/LuganoPlanB/vite-theme/releases/latest/download/lugano-planb-vite-theme-0.1.0.tar.gz
+tar -xzf lugano-planb-vite-theme-0.1.0.tar.gz -C .vitepress/theme/
+```
+
+Then in `.vitepress/theme/index.js`:
+
+```js
+import DefaultTheme from "vitepress/theme";
+import "./lugano-planb-vite-theme/theme.css";
+import { initializePlanBThemeToggle } from "./lugano-planb-vite-theme/index.js";
+
+export default {
+  extends: DefaultTheme,
+  enhanceApp({ app }) {
+    initializePlanBThemeToggle();
+  },
+};
+```
+
+Vite rewrites the hero image URL and processes the CSS automatically — no
+additional build configuration needed.
+
 ## Example: adopt in `lugano-lips`
 
 Minimal `src/main.js` shape:
