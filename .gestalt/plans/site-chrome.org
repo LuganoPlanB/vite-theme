@@ -26,7 +26,7 @@
 :Done when: The demo renders a polished footer after main content and tests cover shell placement.
 :END:
 
-** TODO [#B] Document site chrome helpers
+** DONE [#B] Document site chrome helpers
 :PROPERTIES:
 :Why: Host apps need to know the new helpers exist and how they fit around the existing hero helper.
 :Change: Update README with a compact note about site header/footer helpers and chrome classes.

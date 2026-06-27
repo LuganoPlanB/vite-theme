@@ -9,7 +9,7 @@ Reusable Vite theme:
 ## What this repo exports
 
 - `lugano-planb-vite-theme/theme.css`: the reusable theme stylesheet
-- `lugano-planb-vite-theme`: DOM helpers to mount the Plan B header
+- `lugano-planb-vite-theme`: DOM helpers to mount Plan B site chrome, hero, and page shell
 
 The exports point to source files on purpose. In Vite projects this is seamless: Vite resolves the package exports, processes the CSS import, and rewrites the hero asset URL automatically.
 
@@ -44,19 +44,31 @@ In the target app entrypoint:
 
 ```js
 import "lugano-planb-vite-theme/theme.css";
-import { mountPlanBHeader } from "lugano-planb-vite-theme";
+import {
+  createPlanBFooter,
+  createPlanBHeader,
+  createPlanBPageShell,
+  createPlanBSiteHeader,
+  defaultPlanBThemeContent,
+} from "lugano-planb-vite-theme";
 
-mountPlanBHeader({
-  target: document.querySelector("#app"),
-  headerContent: {
-    eyebrow: "Lugano LIPS",
-    title: "Lugano Improvement Proposals",
-    lede: "Open proposals for the Lugano ecosystem.",
-  },
-});
+document.querySelector("#app").replaceChildren(
+  createPlanBPageShell({
+    siteHeader: createPlanBSiteHeader(defaultPlanBThemeContent.siteHeader),
+    header: createPlanBHeader({
+      eyebrow: "Lugano LIPS",
+      title: "Lugano Improvement Proposals",
+      lede: "Open proposals for the Lugano ecosystem.",
+    }),
+    mainContent: "<section class=\"planb-panel\"><h2>Latest proposals</h2></section>",
+    footer: createPlanBFooter(defaultPlanBThemeContent.footer),
+  }),
+);
 ```
 
 Then render the rest of the page as usual below the header.
+
+For simpler host apps, `mountPlanBHeader` remains available when only the hero is needed.
 
 ## Example: adopt in `lugano-lips`
 
@@ -108,6 +120,10 @@ The stylesheet also includes reusable showcase classes for civic project pages:
 - `planb-software-grid`, `planb-software-card`, `planb-action-row`: software projects with separate homepage and source-code links.
 
 See `src/main.js` for minimal semantic markup examples.
+
+## Site chrome
+
+Use `createPlanBSiteHeader` for the top brand/navigation bar and `createPlanBFooter` for footer navigation and meta text. `createPlanBPageShell` accepts both as optional `siteHeader` and `footer` elements around the existing hero and main content.
 
 ## Repository structure
 
