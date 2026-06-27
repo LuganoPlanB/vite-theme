@@ -26,7 +26,7 @@
 :Done when: Publications and software showcase panels are present, accessible, and visually consistent with the theme.
 :END:
 
-** TODO [#B] Document showcase class usage
+** DONE [#B] Document showcase class usage
 :PROPERTIES:
 :Why: Host apps need lightweight guidance to reuse the new card and timeline classes without reading the demo source.
 :Change: Update README with a short section describing the showcase classes and intended usage.

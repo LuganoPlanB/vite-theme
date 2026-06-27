@@ -98,6 +98,17 @@ If the host app needs different spacing or colors, override the CSS custom prope
 }
 ```
 
+## Showcase elements
+
+The stylesheet also includes reusable showcase classes for civic project pages:
+
+- `planb-logo-grid`, `planb-logo-card`, `planb-logo-mark`: partner, initiative, or working-group cards with a compact identity mark.
+- `planb-timeline`, `planb-timeline__item`: ordered historical milestones with dates and descriptions.
+- `planb-publication-grid`, `planb-publication-card`, `planb-meta-list`: academic publications, whitepapers, and research briefs.
+- `planb-software-grid`, `planb-software-card`, `planb-action-row`: software projects with separate homepage and source-code links.
+
+See `src/main.js` for minimal semantic markup examples.
+
 ## Repository structure
 
 - `src/theme/domain.js`: theme defaults and normalization rules
