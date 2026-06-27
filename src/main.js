@@ -3,6 +3,7 @@ import "./theme/theme.css";
 import {
   createPlanBHeader,
   createPlanBPageShell,
+  createPlanBSiteHeader,
   defaultPlanBThemeContent,
   initializePlanBThemeToggle,
 } from "./theme/index.js";
@@ -11,9 +12,10 @@ const app = document.querySelector("#app");
 
 app.replaceChildren(
   createPlanBPageShell({
+    siteHeader: createPlanBSiteHeader(defaultPlanBThemeContent.siteHeader),
     header: createPlanBHeader(defaultPlanBThemeContent.header),
     mainContent: `
-      <section class="planb-panel">
+      <section class="planb-panel" id="foundation">
         <div class="planb-section-heading">
           <p class="planb-eyebrow">Foundation</p>
           <h2>Open infrastructure for civic experiments.</h2>
@@ -43,7 +45,7 @@ app.replaceChildren(
         </article>
       </section>
 
-      <section class="planb-panel">
+      <section class="planb-panel" id="network">
         <div class="planb-section-heading">
           <p class="planb-eyebrow">Network</p>
           <h2>Civic teams building shared urban capability.</h2>
@@ -77,7 +79,7 @@ app.replaceChildren(
         </div>
       </section>
 
-      <section class="planb-panel">
+      <section class="planb-panel" id="timeline">
         <div class="planb-section-heading">
           <p class="planb-eyebrow">Timeline</p>
           <h2>Milestones from idea to civic infrastructure.</h2>
@@ -111,7 +113,7 @@ app.replaceChildren(
         </ol>
       </section>
 
-      <section class="planb-panel">
+      <section class="planb-panel" id="library">
         <div class="planb-section-heading">
           <p class="planb-eyebrow">Library</p>
           <h2>Research, whitepapers, and field notes.</h2>
@@ -156,7 +158,7 @@ app.replaceChildren(
         </div>
       </section>
 
-      <section class="planb-panel">
+      <section class="planb-panel" id="software">
         <div class="planb-section-heading">
           <p class="planb-eyebrow">Software</p>
           <h2>Open tools with clear paths to use and inspect.</h2>

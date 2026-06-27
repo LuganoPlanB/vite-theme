@@ -3,15 +3,43 @@ import assert from "node:assert/strict";
 
 import {
   createPlanBPageShell,
+  createPlanBSiteHeader,
   defaultPlanBThemeContent,
   initializePlanBThemeToggle,
   mountPlanBHeader,
 } from "../src/theme/index.js";
 
 test("default theme content exposes header copy", () => {
+  assert.equal(defaultPlanBThemeContent.siteHeader.brand, "Plan B");
+  assert.ok(defaultPlanBThemeContent.siteHeader.navItems.length > 0);
   assert.equal(defaultPlanBThemeContent.header.eyebrow, "Lugano Plan B");
   assert.match(defaultPlanBThemeContent.header.title, /civic/i);
   assert.match(defaultPlanBThemeContent.header.lede, /smart city/i);
+});
+
+test("createPlanBSiteHeader renders brand navigation and action", () => {
+  globalThis.document = {
+    createElement(tagName) {
+      return {
+        tagName,
+        className: "",
+        innerHTML: "",
+      };
+    },
+  };
+
+  const siteHeader = createPlanBSiteHeader({
+    brand: "Civic Foundation",
+    navItems: [{ label: "Projects", href: "#projects" }],
+    action: { label: "Contact", href: "mailto:test@example.com" },
+  });
+
+  assert.equal(siteHeader.tagName, "header");
+  assert.equal(siteHeader.className, "planb-site-header");
+  assert.match(siteHeader.innerHTML, /Civic Foundation/);
+  assert.match(siteHeader.innerHTML, /aria-label="Primary"/);
+  assert.match(siteHeader.innerHTML, /#projects/);
+  assert.match(siteHeader.innerHTML, /mailto:test@example.com/);
 });
 
 test("mountPlanBHeader prepends the header markup", () => {
@@ -67,16 +95,19 @@ test("createPlanBPageShell appends header and main content", () => {
     },
   };
 
+  const siteHeader = { tagName: "site-header" };
   const header = { tagName: "header" };
   const shell = createPlanBPageShell({
+    siteHeader,
     header,
     mainContent: "<section>Body</section>",
   });
 
   assert.equal(shell.className, "planb-page-shell");
-  assert.equal(shell.children[0], header);
-  assert.equal(shell.children[1].tagName, "main");
-  assert.match(shell.children[1].innerHTML, /Body/);
+  assert.equal(shell.children[0], siteHeader);
+  assert.equal(shell.children[1], header);
+  assert.equal(shell.children[2].tagName, "main");
+  assert.match(shell.children[2].innerHTML, /Body/);
 });
 
 test("initializePlanBThemeToggle applies and persists manual theme preference", () => {

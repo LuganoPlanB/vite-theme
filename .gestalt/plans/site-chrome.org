@@ -1,0 +1,35 @@
+#+TITLE: Site Chrome
+#+SUBTITLE: Reusable top navigation header and footer for the Vite theme
+#+DATE: 2026-06-27
+#+KEYWORDS: vite theme header footer navigation landmarks
+
+* WIP [#A] Add reusable site header and footer
+:PROPERTIES:
+:Effort: 3h
+:Goal: Add professional site chrome that works with the existing hero, panels, and showcase elements.
+:Notes: Work directly on main as requested. Preserve existing public exports and class names; adding exports is acceptable. Use semantic header, nav, main, and footer landmarks.
+:END:
+
+** DONE [#A] Add top navigation header
+:PROPERTIES:
+:Why: The theme has a hero but no reusable site-level navigation header for brand, links, and a primary action.
+:Change: Add default site navigation content, a createPlanBSiteHeader helper, demo usage, CSS, and tests.
+:Tests: Run theme API tests and build because public JS, demo markup, and shared CSS change.
+:Done when: The demo renders a professional top header above the hero and tests cover the helper.
+:END:
+
+** TODO [#A] Add page footer
+:PROPERTIES:
+:Why: Civic/foundation pages need a reusable footer for mission summary, navigation groups, and legal/meta information.
+:Change: Add default footer content, a createPlanBFooter helper, page-shell footer support, demo usage, CSS, and tests.
+:Tests: Run theme API tests and build because public JS, demo markup, and shared CSS change.
+:Done when: The demo renders a polished footer after main content and tests cover shell placement.
+:END:
+
+** TODO [#B] Document site chrome helpers
+:PROPERTIES:
+:Why: Host apps need to know the new helpers exist and how they fit around the existing hero helper.
+:Change: Update README with a compact note about site header/footer helpers and chrome classes.
+:Tests: Skip test operations if only README and plan status change.
+:Done when: README names the helpers and intended layout order clearly.
+:END:

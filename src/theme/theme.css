@@ -291,6 +291,101 @@ h3 {
   min-height: 100dvh;
 }
 
+.planb-site-header {
+  position: relative;
+  z-index: 2;
+  border-bottom: var(--planb-border-soft);
+  background:
+    linear-gradient(180deg, color-mix(in srgb, var(--planb-color-canvas) 94%, transparent), color-mix(in srgb, var(--planb-color-canvas-alt) 88%, transparent)),
+    var(--planb-color-canvas);
+}
+
+.planb-site-header__inner {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px 24px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 0;
+}
+
+.planb-brand,
+.planb-site-nav a,
+.planb-header-action {
+  color: var(--planb-color-accent-strong);
+  text-decoration: none;
+}
+
+.planb-brand {
+  display: inline-flex;
+  gap: 0.65rem;
+  align-items: center;
+  font-weight: 800;
+}
+
+.planb-brand__mark {
+  display: inline-block;
+  inline-size: 0.95rem;
+  block-size: 0.95rem;
+  border-radius: 999px;
+  background: var(--planb-gradient-rainbow);
+  box-shadow: var(--planb-eyebrow-dot-shadow);
+}
+
+.planb-site-nav ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 1rem;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.planb-site-nav a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.25rem;
+  color: var(--planb-color-text-soft);
+  font-size: 0.92rem;
+  font-weight: 700;
+}
+
+.planb-site-nav a:hover {
+  color: var(--planb-color-accent-strong);
+}
+
+.planb-header-action {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.5rem;
+  padding: 0.58rem 0.9rem;
+  border: var(--planb-border-soft);
+  border-radius: 999px;
+  background: var(--planb-color-panel);
+  font-size: 0.88rem;
+  font-weight: 800;
+  box-shadow: 0 10px 22px color-mix(in srgb, var(--planb-color-text) 8%, transparent);
+  transition:
+    border-color 160ms ease,
+    box-shadow 160ms ease,
+    transform 160ms ease;
+}
+
+.planb-header-action:hover {
+  border-color: color-mix(in srgb, var(--planb-color-accent) 42%, transparent);
+  box-shadow: 0 14px 28px color-mix(in srgb, var(--planb-color-accent) 12%, transparent);
+  transform: translateY(-1px);
+}
+
+.planb-brand:focus-visible,
+.planb-site-nav a:focus-visible,
+.planb-header-action:focus-visible {
+  outline: 2px solid var(--planb-color-neon-cyan);
+  outline-offset: 3px;
+}
+
 .planb-container {
   width: min(1180px, calc(100% - 40px));
   margin: 0 auto;
@@ -822,6 +917,15 @@ h3 {
     margin-bottom: 1rem;
   }
 
+  .planb-site-header__inner {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .planb-site-nav ul {
+    justify-content: flex-start;
+  }
+
   .planb-panel {
     padding: 20px;
     border-radius: 14px;
@@ -853,12 +957,14 @@ h3 {
 @media (prefers-reduced-motion: reduce) {
   .planb-card,
   .planb-button-link,
+  .planb-header-action,
   .planb-theme-toggle {
     transition: none;
   }
 
   .planb-card:hover,
   .planb-button-link:hover,
+  .planb-header-action:hover,
   .planb-theme-toggle:hover {
     transform: none;
   }

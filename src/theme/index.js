@@ -1,8 +1,49 @@
-import { createDefaultPlanBThemeContent, normalizePlanBHeaderContent } from "./domain.js";
+import {
+  createDefaultPlanBThemeContent,
+  normalizePlanBHeaderContent,
+  normalizePlanBSiteHeaderContent,
+} from "./domain.js";
 
 export const defaultPlanBThemeContent = createDefaultPlanBThemeContent();
 const PLANB_THEME_STORAGE_KEY = "planb-color-scheme";
 const PLANB_THEMES = new Set(["light", "dark"]);
+
+/**
+ * Creates the site-level navigation header used above the hero.
+ *
+ * @param {{brand?: string, navItems?: Array<{label?: string, href?: string}>, action?: {label?: string, href?: string}}} siteHeaderContent
+ * @returns {HTMLElement}
+ */
+export function createPlanBSiteHeader(siteHeaderContent = {}) {
+  const siteHeader = normalizePlanBSiteHeaderContent(siteHeaderContent);
+  const element = document.createElement("header");
+
+  element.className = "planb-site-header";
+  element.innerHTML = `
+    <div class="planb-container planb-site-header__inner">
+      <a class="planb-brand" href="/">
+        <span class="planb-brand__mark" aria-hidden="true"></span>
+        <span>${escapeHtml(siteHeader.brand)}</span>
+      </a>
+      <nav class="planb-site-nav" aria-label="Primary">
+        <ul>
+          ${siteHeader.navItems
+            .map(
+              (item) => `
+                <li><a href="${escapeHtml(item.href)}">${escapeHtml(item.label)}</a></li>
+              `,
+            )
+            .join("")}
+        </ul>
+      </nav>
+      <a class="planb-header-action" href="${escapeHtml(siteHeader.action.href)}">
+        ${escapeHtml(siteHeader.action.label)}
+      </a>
+    </div>
+  `;
+
+  return element;
+}
 
 /**
  * Creates the Plan B header element that consumers can prepend to their own pages.
@@ -37,13 +78,16 @@ export function createPlanBHeader(headerContent = {}) {
 /**
  * Creates a full page shell for the demo or for apps that want the complete wrapper.
  *
- * @param {{header: HTMLElement, mainContent?: string}} options
+ * @param {{header: HTMLElement, mainContent?: string, siteHeader?: HTMLElement}} options
  * @returns {HTMLElement}
  */
-export function createPlanBPageShell({ header, mainContent = "" }) {
+export function createPlanBPageShell({ header, mainContent = "", siteHeader = null }) {
   const shell = document.createElement("div");
 
   shell.className = "planb-page-shell";
+  if (siteHeader) {
+    shell.append(siteHeader);
+  }
   shell.append(header);
 
   const main = document.createElement("main");
