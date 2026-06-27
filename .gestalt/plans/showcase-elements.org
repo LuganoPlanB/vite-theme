@@ -1,0 +1,35 @@
+#+TITLE: Showcase Elements
+#+SUBTITLE: Reusable demo sections for civic organizations, history, publications, and software
+#+DATE: 2026-06-27
+#+KEYWORDS: vite theme showcase cards timeline publications software
+
+* WIP [#A] Add reusable showcase panels
+:PROPERTIES:
+:Effort: 4h
+:Goal: Add professional showcase elements beneath the existing demo content without changing the public JavaScript API or adding dependencies.
+:Notes: Keep the demo package-first. Use namespaced CSS classes, semantic HTML, responsive layouts, and accessible links.
+:END:
+
+** DONE [#A] Add logo cards and historical timeline
+:PROPERTIES:
+:Why: The theme needs reusable patterns for organizational partners or initiatives and historical civic milestones.
+:Change: Add generic logo/text cards and a timeline section to the demo, with corresponding responsive theme styles.
+:Tests: Run theme API tests and build because demo HTML and shared CSS change.
+:Done when: The demo has a polished logo-card panel and timeline panel that work with the existing visual language.
+:END:
+
+** TODO [#A] Add publication and software cards
+:PROPERTIES:
+:Why: A civic foundation site needs credible patterns for academic publications, whitepapers, software projects, homepages, and source links.
+:Change: Add publication cards and software cards with semantic metadata, clear actions, and responsive layouts.
+:Tests: Run theme API tests and build because demo HTML and shared CSS change.
+:Done when: Publications and software showcase panels are present, accessible, and visually consistent with the theme.
+:END:
+
+** TODO [#B] Document showcase class usage
+:PROPERTIES:
+:Why: Host apps need lightweight guidance to reuse the new card and timeline classes without reading the demo source.
+:Change: Update README with a short section describing the showcase classes and intended usage.
+:Tests: Skip test operations if only README and plan status change.
+:Done when: README names the new reusable showcase patterns clearly.
+:END:
