@@ -3,7 +3,7 @@
 #+DATE: 2026-06-27
 #+KEYWORDS: vite theme civic polish accessibility performance
 
-* WIP [#A] Polish the reusable theme presentation
+* DONE [#A] Polish the reusable theme presentation
 :PROPERTIES:
 :Effort: 3h
 :Goal: Make the theme feel more professional, smooth, appealing, and civic while preserving the Vite package shape, fonts, rainbow accents, and hero readability shadows.
