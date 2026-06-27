@@ -3,7 +3,7 @@
 #+DATE: 2026-06-27
 #+KEYWORDS: vite theme showcase cards timeline publications software
 
-* WIP [#A] Add reusable showcase panels
+* DONE [#A] Add reusable showcase panels
 :PROPERTIES:
 :Effort: 4h
 :Goal: Add professional showcase elements beneath the existing demo content without changing the public JavaScript API or adding dependencies.
