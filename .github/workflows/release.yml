@@ -5,6 +5,7 @@ on:
     branches: [main]
     paths:
       - src/theme/**
+      - .github/workflows/**
   workflow_dispatch:
 
 permissions:
@@ -15,27 +16,52 @@ jobs:
     if: ${{ github.event_name != 'push' || !contains(github.event.head_commit.message, '[skip ci]') }}
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+      - uses: actions/checkout@v4
         with:
           fetch-depth: 0
+          fetch-tags: true
+
+      - name: Bootstrap first tag if none exist
+        id: bootstrap
+        run: |
+          if git describe --tags --abbrev=0 2>/dev/null; then
+            echo "bootstrapped=false" >> "$GITHUB_OUTPUT"
+          else
+            git tag -a v0.1.0 -m "v0.1.0"
+            git push origin v0.1.0
+            echo "bootstrapped=true" >> "$GITHUB_OUTPUT"
+            echo "version=0.1.0" >> "$GITHUB_OUTPUT"
+          fi
 
       - name: Calculate next version
+        if: steps.bootstrap.outputs.bootstrapped != 'true'
         id: semver
         uses: ietf-tools/semver-action@v1
         with:
           token: ${{ github.token }}
           branch: main
-          fallbackTag: 0.1.0
           noVersionBumpBehavior: patch
 
-      - name: Create annotated tag
+      - name: Set release version
+        id: version
         run: |
-          git tag -a "${{ steps.semver.outputs.next }}" -m "${{ steps.semver.outputs.next }}"
-          git push origin "${{ steps.semver.outputs.next }}"
+          if [ "${{ steps.bootstrap.outputs.bootstrapped }}" = "true" ]; then
+            echo "tag=v0.1.0" >> "$GITHUB_OUTPUT"
+            echo "number=0.1.0" >> "$GITHUB_OUTPUT"
+          else
+            echo "tag=${{ steps.semver.outputs.next }}" >> "$GITHUB_OUTPUT"
+            echo "number=${{ steps.semver.outputs.nextStrict }}" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Create annotated tag
+        if: steps.bootstrap.outputs.bootstrapped != 'true'
+        run: |
+          git tag -a "${{ steps.version.outputs.tag }}" -m "${{ steps.version.outputs.tag }}"
+          git push origin "${{ steps.version.outputs.tag }}"
 
       - name: Package theme archive
         run: |
-          VERSION="${{ steps.semver.outputs.nextStrict }}"
+          VERSION="${{ steps.version.outputs.number }}"
           PKG="lugano-planb-vite-theme"
 
           mkdir -p "release/${PKG}/assets"
@@ -63,8 +89,8 @@ jobs:
           tar -czf "release/${PKG}-${VERSION}.tar.gz" -C release "${PKG}"
 
       - name: Create GitHub Release
-        uses: softprops/action-gh-release@718ea10b132b3b2eba29c1007bb80653f286566b # v3.0.1
+        uses: softprops/action-gh-release@v2
         with:
-          tag_name: ${{ steps.semver.outputs.next }}
+          tag_name: ${{ steps.version.outputs.tag }}
           files: release/*.tar.gz
           generate_release_notes: true
