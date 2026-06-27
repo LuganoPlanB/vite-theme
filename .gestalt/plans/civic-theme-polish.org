@@ -18,7 +18,7 @@
 :Done when: The demo reads as a civic foundation website while still exercising the public theme helpers.
 :END:
 
-** TODO [#A] Tighten visual hierarchy, spacing, and motion
+** DONE [#A] Tighten visual hierarchy, spacing, and motion
 :PROPERTIES:
 :Why: Large radii, heavy panel shadows, and dense hero wrapping make the site feel less institutional and less consistent.
 :Change: Calm card and panel surfaces, widen hero text measure, preserve hero title and lede shadows, add subtle reduced-motion-aware transitions, and keep the rainbow ::before accents.

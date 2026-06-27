@@ -47,8 +47,8 @@
     0 0 0 4px rgba(79, 151, 233, 0.12),
     0 0 12px rgba(35, 245, 255, 0.24);
   --planb-shadow-panel:
-    0 24px 60px rgba(8, 41, 82, 0.12),
-    inset -10px -10px 18px rgba(8, 41, 82, 0.08);
+    0 18px 44px rgba(8, 41, 82, 0.08),
+    0 1px 0 rgba(255, 255, 255, 0.84) inset;
   --planb-panel-background:
     linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(243, 249, 255, 0.98)),
     var(--planb-color-panel);
@@ -58,7 +58,10 @@
     var(--planb-color-panel-strong);
   --planb-card-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.72),
-    0 16px 36px rgba(8, 41, 82, 0.08);
+    0 10px 24px rgba(8, 41, 82, 0.06);
+  --planb-card-shadow-hover:
+    inset 0 1px 0 rgba(255, 255, 255, 0.72),
+    0 14px 28px color-mix(in srgb, var(--planb-color-accent) 10%, transparent);
   accent-color: var(--planb-color-accent);
   scrollbar-color: color-mix(in srgb, var(--planb-color-accent) 68%, transparent) color-mix(in srgb, var(--planb-color-canvas-alt) 88%, transparent);
   scrollbar-width: thin;
@@ -113,11 +116,12 @@
     --planb-eyebrow-dot-shadow:
       0 0 0 4px rgba(247, 147, 26, 0.12),
       0 0 12px rgba(225, 83, 100, 0.18);
-    --planb-shadow-panel: 0 30px 80px rgba(0, 0, 0, 0.32);
+    --planb-shadow-panel: 0 22px 56px rgba(0, 0, 0, 0.28);
     --planb-panel-background: linear-gradient(180deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.015));
     --planb-panel-bar-shadow: 0 0 18px rgba(247, 147, 26, 0.12);
     --planb-card-background: var(--planb-color-panel);
     --planb-card-shadow: none;
+    --planb-card-shadow-hover: 0 18px 34px rgba(0, 0, 0, 0.22);
   }
 
   .planb-eyebrow {
@@ -171,8 +175,8 @@
     0 0 0 4px rgba(79, 151, 233, 0.12),
     0 0 12px rgba(35, 245, 255, 0.24);
   --planb-shadow-panel:
-    0 24px 60px rgba(8, 41, 82, 0.12),
-    inset -10px -10px 18px rgba(8, 41, 82, 0.08);
+    0 18px 44px rgba(8, 41, 82, 0.08),
+    0 1px 0 rgba(255, 255, 255, 0.84) inset;
   --planb-panel-background:
     linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(243, 249, 255, 0.98)),
     var(--planb-color-panel);
@@ -182,7 +186,10 @@
     var(--planb-color-panel-strong);
   --planb-card-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.72),
-    0 16px 36px rgba(8, 41, 82, 0.08);
+    0 10px 24px rgba(8, 41, 82, 0.06);
+  --planb-card-shadow-hover:
+    inset 0 1px 0 rgba(255, 255, 255, 0.72),
+    0 14px 28px color-mix(in srgb, var(--planb-color-accent) 10%, transparent);
 }
 
 :root[data-theme="dark"] {
@@ -234,11 +241,12 @@
   --planb-eyebrow-dot-shadow:
     0 0 0 4px rgba(247, 147, 26, 0.12),
     0 0 12px rgba(225, 83, 100, 0.18);
-  --planb-shadow-panel: 0 30px 80px rgba(0, 0, 0, 0.32);
+  --planb-shadow-panel: 0 22px 56px rgba(0, 0, 0, 0.28);
   --planb-panel-background: linear-gradient(180deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.015));
   --planb-panel-bar-shadow: 0 0 18px rgba(247, 147, 26, 0.12);
   --planb-card-background: var(--planb-color-panel);
   --planb-card-shadow: none;
+  --planb-card-shadow-hover: 0 18px 34px rgba(0, 0, 0, 0.22);
 }
 
 :root[data-theme="dark"] .planb-eyebrow {
@@ -284,7 +292,7 @@ h3 {
 }
 
 .planb-container {
-  width: min(1440px, calc(100% - 40px));
+  width: min(1180px, calc(100% - 40px));
   margin: 0 auto;
 }
 
@@ -406,7 +414,7 @@ h3 {
 
 .planb-hero h1 {
   color: var(--planb-color-accent-strong);
-  max-width: 11ch;
+  max-width: 15ch;
   font-size: clamp(3rem, 8vw, 4.75rem);
   font-weight: 800;
   line-height: 1.08;
@@ -415,7 +423,7 @@ h3 {
 }
 
 .planb-main h3 {
-  font-size: clamp(1.3rem, 2.6vw, 2rem);
+  font-size: clamp(1.12rem, 2vw, 1.45rem);
   font-weight: 700;
   line-height: 1.15;
   color: var(--planb-color-accent-strong);
@@ -453,14 +461,14 @@ h3 {
 }
 
 .planb-main {
-  padding: 48px 0 96px;
+  padding: 56px 0 96px;
 }
 
 .planb-panel {
-  margin-top: 44px;
-  padding: 32px;
+  margin-top: 28px;
+  padding: 28px;
   border: var(--planb-border-soft);
-  border-radius: 28px;
+  border-radius: 16px;
   background: var(--planb-panel-background);
   box-shadow: var(--planb-shadow-panel);
   position: relative;
@@ -498,18 +506,28 @@ h3 {
 
 .planb-grid {
   display: grid;
-  gap: 20px;
+  gap: 16px;
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
 .planb-card {
-  border-radius: 22px;
+  border-radius: 12px;
   border: var(--planb-border-soft);
   background: var(--planb-card-background);
-  padding: 22px;
+  padding: 20px;
   box-shadow: var(--planb-card-shadow);
   position: relative;
   overflow: hidden;
+  transition:
+    border-color 160ms ease,
+    box-shadow 160ms ease,
+    transform 160ms ease;
+}
+
+.planb-card:hover {
+  border-color: color-mix(in srgb, var(--planb-color-accent) 36%, transparent);
+  box-shadow: var(--planb-card-shadow-hover);
+  transform: translateY(-2px);
 }
 
 .planb-card p:last-child {
@@ -544,7 +562,7 @@ h3 {
   }
 
   .planb-hero h1 {
-    max-width: 10ch;
+    max-width: 14ch;
   }
 
   .planb-lede {
@@ -569,7 +587,7 @@ h3 {
 
   .planb-panel {
     padding: 20px;
-    border-radius: 22px;
+    border-radius: 14px;
   }
 
   .planb-panel:first-child {
@@ -578,5 +596,17 @@ h3 {
 
   .planb-grid {
     grid-template-columns: 1fr;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .planb-card,
+  .planb-theme-toggle {
+    transition: none;
+  }
+
+  .planb-card:hover,
+  .planb-theme-toggle:hover {
+    transform: none;
   }
 }
