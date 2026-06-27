@@ -22,18 +22,23 @@ jobs:
 
       - name: Calculate next version
         id: semver
-        uses: ietf-tools/semver-action@v1
+        uses: ietf-tools/semver-action@c90370b2958652d71c06a3484129a4d423a6d8a8 # v1.11.0
         with:
           token: ${{ github.token }}
           branch: main
-          noVersionBumpBehavior: patch
+          fallbackTag: v0.0.0
+          patchAll: true
+          noNewCommitBehavior: current
+          noVersionBumpBehavior: current
 
-      - name: Create annotated tag
+      - name: Create and push tag
+        if: steps.semver.outputs.bump != 'none'
         run: |
-          git tag -a "${{ steps.semver.outputs.next }}" -m "${{ steps.semver.outputs.next }}"
-          git push origin "${{ steps.semver.outputs.next }}"
+          git tag ${{ steps.semver.outputs.next }}
+          git push origin ${{ steps.semver.outputs.next }}
 
       - name: Package theme archive
+        if: steps.semver.outputs.bump != 'none'
         run: |
           VERSION="${{ steps.semver.outputs.nextStrict }}"
           PKG="lugano-planb-vite-theme"
@@ -63,6 +68,7 @@ jobs:
           tar -czf "release/${PKG}-${VERSION}.tar.gz" -C release "${PKG}"
 
       - name: Create GitHub Release
+        if: steps.semver.outputs.bump != 'none'
         uses: softprops/action-gh-release@v2
         with:
           tag_name: ${{ steps.semver.outputs.next }}
