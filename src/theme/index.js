@@ -1,5 +1,6 @@
 import {
   createDefaultPlanBThemeContent,
+  normalizePlanBFooterContent,
   normalizePlanBHeaderContent,
   normalizePlanBSiteHeaderContent,
 } from "./domain.js";
@@ -76,12 +77,59 @@ export function createPlanBHeader(headerContent = {}) {
 }
 
 /**
- * Creates a full page shell for the demo or for apps that want the complete wrapper.
+ * Creates the site footer used after the main page content.
  *
- * @param {{header: HTMLElement, mainContent?: string, siteHeader?: HTMLElement}} options
+ * @param {{brand?: string, summary?: string, groups?: Array<{title?: string, links?: Array<{label?: string, href?: string}>}>, meta?: string}} footerContent
  * @returns {HTMLElement}
  */
-export function createPlanBPageShell({ header, mainContent = "", siteHeader = null }) {
+export function createPlanBFooter(footerContent = {}) {
+  const footer = normalizePlanBFooterContent(footerContent);
+  const element = document.createElement("footer");
+
+  element.className = "planb-footer";
+  element.innerHTML = `
+    <div class="planb-container planb-footer__inner">
+      <div class="planb-footer__brand">
+        <a class="planb-brand" href="/">
+          <span class="planb-brand__mark" aria-hidden="true"></span>
+          <span>${escapeHtml(footer.brand)}</span>
+        </a>
+        <p>${escapeHtml(footer.summary)}</p>
+      </div>
+      <nav class="planb-footer__nav" aria-label="Footer">
+        ${footer.groups
+          .map(
+            (group) => `
+              <section>
+                <h2>${escapeHtml(group.title)}</h2>
+                <ul>
+                  ${group.links
+                    .map(
+                      (link) => `
+                        <li><a href="${escapeHtml(link.href)}">${escapeHtml(link.label)}</a></li>
+                      `,
+                    )
+                    .join("")}
+                </ul>
+              </section>
+            `,
+          )
+          .join("")}
+      </nav>
+      <p class="planb-footer__meta">${escapeHtml(footer.meta)}</p>
+    </div>
+  `;
+
+  return element;
+}
+
+/**
+ * Creates a full page shell for the demo or for apps that want the complete wrapper.
+ *
+ * @param {{header: HTMLElement, mainContent?: string, siteHeader?: HTMLElement, footer?: HTMLElement}} options
+ * @returns {HTMLElement}
+ */
+export function createPlanBPageShell({ header, mainContent = "", siteHeader = null, footer = null }) {
   const shell = document.createElement("div");
 
   shell.className = "planb-page-shell";
@@ -94,6 +142,9 @@ export function createPlanBPageShell({ header, mainContent = "", siteHeader = nu
   main.className = "planb-container planb-main";
   main.innerHTML = mainContent;
   shell.append(main);
+  if (footer) {
+    shell.append(footer);
+  }
 
   return shell;
 }

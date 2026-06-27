@@ -2,6 +2,7 @@ import test from "node:test";
 import assert from "node:assert/strict";
 
 import {
+  createPlanBFooter,
   createPlanBPageShell,
   createPlanBSiteHeader,
   defaultPlanBThemeContent,
@@ -15,6 +16,8 @@ test("default theme content exposes header copy", () => {
   assert.equal(defaultPlanBThemeContent.header.eyebrow, "Lugano Plan B");
   assert.match(defaultPlanBThemeContent.header.title, /civic/i);
   assert.match(defaultPlanBThemeContent.header.lede, /smart city/i);
+  assert.equal(defaultPlanBThemeContent.footer.brand, "Lugano Plan B");
+  assert.ok(defaultPlanBThemeContent.footer.groups.length > 0);
 });
 
 test("createPlanBSiteHeader renders brand navigation and action", () => {
@@ -80,6 +83,37 @@ test("mountPlanBHeader prepends the header markup", () => {
   assert.match(header.innerHTML, /aria-pressed="false"/);
 });
 
+test("createPlanBFooter renders footer summary navigation and meta text", () => {
+  globalThis.document = {
+    createElement(tagName) {
+      return {
+        tagName,
+        className: "",
+        innerHTML: "",
+      };
+    },
+  };
+
+  const footer = createPlanBFooter({
+    brand: "Civic Footer",
+    summary: "Reusable civic footer summary.",
+    groups: [
+      {
+        title: "Explore",
+        links: [{ label: "Library", href: "#library" }],
+      },
+    ],
+    meta: "Built for open cities.",
+  });
+
+  assert.equal(footer.tagName, "footer");
+  assert.equal(footer.className, "planb-footer");
+  assert.match(footer.innerHTML, /Civic Footer/);
+  assert.match(footer.innerHTML, /aria-label="Footer"/);
+  assert.match(footer.innerHTML, /#library/);
+  assert.match(footer.innerHTML, /Built for open cities/);
+});
+
 test("createPlanBPageShell appends header and main content", () => {
   globalThis.document = {
     createElement(tagName) {
@@ -97,9 +131,11 @@ test("createPlanBPageShell appends header and main content", () => {
 
   const siteHeader = { tagName: "site-header" };
   const header = { tagName: "header" };
+  const footer = { tagName: "footer" };
   const shell = createPlanBPageShell({
     siteHeader,
     header,
+    footer,
     mainContent: "<section>Body</section>",
   });
 
@@ -108,6 +144,7 @@ test("createPlanBPageShell appends header and main content", () => {
   assert.equal(shell.children[1], header);
   assert.equal(shell.children[2].tagName, "main");
   assert.match(shell.children[2].innerHTML, /Body/);
+  assert.equal(shell.children[3], footer);
 });
 
 test("initializePlanBThemeToggle applies and persists manual theme preference", () => {

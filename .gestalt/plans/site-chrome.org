@@ -18,7 +18,7 @@
 :Done when: The demo renders a professional top header above the hero and tests cover the helper.
 :END:
 
-** TODO [#A] Add page footer
+** DONE [#A] Add page footer
 :PROPERTIES:
 :Why: Civic/foundation pages need a reusable footer for mission summary, navigation groups, and legal/meta information.
 :Change: Add default footer content, a createPlanBFooter helper, page-shell footer support, demo usage, CSS, and tests.

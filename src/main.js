@@ -1,6 +1,7 @@
 import "./theme/theme.css";
 
 import {
+  createPlanBFooter,
   createPlanBHeader,
   createPlanBPageShell,
   createPlanBSiteHeader,
@@ -14,6 +15,7 @@ app.replaceChildren(
   createPlanBPageShell({
     siteHeader: createPlanBSiteHeader(defaultPlanBThemeContent.siteHeader),
     header: createPlanBHeader(defaultPlanBThemeContent.header),
+    footer: createPlanBFooter(defaultPlanBThemeContent.footer),
     mainContent: `
       <section class="planb-panel" id="foundation">
         <div class="planb-section-heading">
