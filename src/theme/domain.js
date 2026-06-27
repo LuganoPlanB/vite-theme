@@ -7,9 +7,9 @@ export function createDefaultPlanBThemeContent() {
   return {
     header: {
       eyebrow: "Lugano Plan B",
-      title: "Light blue theme variation",
+      title: "Civic technology for open cities",
       lede:
-        "A brighter shared shell with calm blue surfaces, crisp contrast, and a more optimistic hardware-style finish for other Vite apps to reuse.",
+        "A shared visual shell for smart city projects, public-interest tools, and civic hacking communities building with open urban data.",
     },
   };
 }

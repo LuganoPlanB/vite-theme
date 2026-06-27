@@ -10,7 +10,8 @@ import {
 
 test("default theme content exposes header copy", () => {
   assert.equal(defaultPlanBThemeContent.header.eyebrow, "Lugano Plan B");
-  assert.match(defaultPlanBThemeContent.header.title, /theme/i);
+  assert.match(defaultPlanBThemeContent.header.title, /civic/i);
+  assert.match(defaultPlanBThemeContent.header.lede, /smart city/i);
 });
 
 test("mountPlanBHeader prepends the header markup", () => {

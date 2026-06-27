@@ -1,0 +1,35 @@
+#+TITLE: Civic Theme Polish
+#+SUBTITLE: Professional smart city and civic hacking presentation for the reusable Vite theme
+#+DATE: 2026-06-27
+#+KEYWORDS: vite theme civic polish accessibility performance
+
+* WIP [#A] Polish the reusable theme presentation
+:PROPERTIES:
+:Effort: 3h
+:Goal: Make the theme feel more professional, smooth, appealing, and civic while preserving the Vite package shape, fonts, rainbow accents, and hero readability shadows.
+:Notes: Keep the demo thin and package-first. Do not add dependencies. Preserve public exports and class names.
+:END:
+
+** DONE [#A] Replace demo copy with civic foundation language
+:PROPERTIES:
+:Why: The current demo talks about theme internals, which makes the first impression feel like a package test rather than a smart city and civic hacking foundation.
+:Change: Update default header copy and demo sections to focus on civic innovation, open city data, public-interest tools, and community projects.
+:Tests: Run the theme API tests because default content assertions may need updates.
+:Done when: The demo reads as a civic foundation website while still exercising the public theme helpers.
+:END:
+
+** TODO [#A] Tighten visual hierarchy, spacing, and motion
+:PROPERTIES:
+:Why: Large radii, heavy panel shadows, and dense hero wrapping make the site feel less institutional and less consistent.
+:Change: Calm card and panel surfaces, widen hero text measure, preserve hero title and lede shadows, add subtle reduced-motion-aware transitions, and keep the rainbow ::before accents.
+:Tests: Run the theme API tests and build because shared CSS and demo output changed.
+:Done when: The theme keeps its identity but feels cleaner, smoother, and more professional across the existing responsive breakpoints.
+:END:
+
+** TODO [#A] Improve toggle accessibility and preload the hero background
+:PROPERTIES:
+:Why: The theme toggle should expose state clearly to assistive technologies, and the CSS hero background should be discovered early for better initial rendering.
+:Change: Add aria-pressed synchronization, polish toggle labels, update tests for the accessible state, and add a high-priority preload for the hero background image.
+:Tests: Run the theme API tests and build.
+:Done when: The toggle communicates active state, the hero background is preloaded, and all local checks pass.
+:END:
