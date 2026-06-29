@@ -37,6 +37,13 @@ jobs:
           git tag ${{ steps.semver.outputs.next }}
           git push origin ${{ steps.semver.outputs.next }}
 
+      - name: Update floating major-version tag
+        if: steps.semver.outputs.bump != 'none'
+        run: |
+          MAJOR="v${{ steps.semver.outputs.nextMajorStrict }}"
+          git tag -f "$MAJOR" ${{ steps.semver.outputs.next }}
+          git push -f origin "$MAJOR"
+
       - name: Package theme archive
         if: steps.semver.outputs.bump != 'none'
         run: |

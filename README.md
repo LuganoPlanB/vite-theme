@@ -114,7 +114,7 @@ Add a single step to your deploy workflow — the action auto-detects Vite or
 VitePress and extracts the latest theme into the right directory:
 
 ```yaml
-- uses: LuganoPlanB/vite-theme/.github/actions/apply@v0.1.0
+- uses: LuganoPlanB/vite-theme/.github/actions/apply@v0
 ```
 
 It checks for `.vitepress/` or `docs/.vitepress/` and extracts into
