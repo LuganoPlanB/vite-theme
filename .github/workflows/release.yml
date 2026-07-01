@@ -56,6 +56,7 @@ jobs:
           cp src/theme/theme.css  "release/${PKG}/"
           cp src/theme/domain.js  "release/${PKG}/"
           cp src/theme/assets/front_hero_desktop_frame.jpg "release/${PKG}/assets/"
+          cp src/theme/assets/logos/*.svg "release/${PKG}/assets/logos/"
 
           node -e "
             const fs = require('fs');
