@@ -3,6 +3,11 @@
 Drop-in visual shell for Vite and VitePress websites — CSS tokens, hero
 header, site chrome helpers, and theme toggle.
 
+The deployed demo is a content-neutral component specimen. It demonstrates
+the complete public shell and CSS pattern set without acting as a foundation
+website or owning civic, product, publication, or project content. Real Plan B
+content belongs in [luganoplanb.github.io](https://github.com/LuganoPlanB/luganoplanb.github.io).
+
 ## Quick start
 
 Add one step to your deploy workflow:

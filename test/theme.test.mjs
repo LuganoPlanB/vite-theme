@@ -11,12 +11,12 @@ import {
 } from "../src/theme/index.js";
 
 test("default theme content exposes header copy", () => {
-  assert.equal(defaultPlanBThemeContent.siteHeader.brand, "Plan B");
+  assert.equal(defaultPlanBThemeContent.siteHeader.brand, "Plan B Theme");
   assert.ok(defaultPlanBThemeContent.siteHeader.navItems.length > 0);
-  assert.equal(defaultPlanBThemeContent.header.eyebrow, "Lugano Plan B");
-  assert.match(defaultPlanBThemeContent.header.title, /civic/i);
-  assert.match(defaultPlanBThemeContent.header.lede, /smart city/i);
-  assert.equal(defaultPlanBThemeContent.footer.brand, "Lugano Plan B");
+  assert.equal(defaultPlanBThemeContent.header.eyebrow, "Theme specimen");
+  assert.match(defaultPlanBThemeContent.header.title, /patterns/i);
+  assert.match(defaultPlanBThemeContent.header.lede, /content-neutral/i);
+  assert.equal(defaultPlanBThemeContent.footer.brand, "Plan B Theme");
   assert.ok(defaultPlanBThemeContent.footer.groups.length > 0);
 });
 

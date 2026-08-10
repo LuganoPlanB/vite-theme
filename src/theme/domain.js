@@ -6,44 +6,44 @@
 export function createDefaultPlanBThemeContent() {
   return {
     siteHeader: {
-      brand: "Plan B",
+      brand: "Plan B Theme",
       navItems: [
-        { label: "Network", href: "#network" },
+        { label: "Cards", href: "#cards" },
         { label: "Timeline", href: "#timeline" },
-        { label: "Library", href: "#library" },
-        { label: "Software", href: "#software" },
+        { label: "Collections", href: "#collections" },
+        { label: "Actions", href: "#actions" },
       ],
-      action: { label: "Start a project", href: "mailto:hello@example.com" },
+      action: { label: "View source", href: "https://github.com/LuganoPlanB/vite-theme" },
     },
     header: {
-      eyebrow: "Lugano Plan B",
-      title: "Civic technology for open cities",
+      eyebrow: "Theme specimen",
+      title: "Reusable patterns for Plan B sites",
       lede:
-        "A shared visual shell for smart city projects, public-interest tools, and civic hacking communities building with open urban data.",
+        "A content-neutral showcase of the shared page shell, responsive surfaces, navigation, typography, actions, and light and dark themes.",
     },
     footer: {
-      brand: "Lugano Plan B",
+      brand: "Plan B Theme",
       summary:
-        "A civic technology foundation helping communities turn open city data, public services, and local expertise into durable tools.",
+        "A reusable visual shell for Vite and VitePress sites. Host applications supply their own content.",
       groups: [
         {
-          title: "Explore",
+          title: "Specimens",
           links: [
-            { label: "Network", href: "#network" },
+            { label: "Cards", href: "#cards" },
             { label: "Timeline", href: "#timeline" },
-            { label: "Library", href: "#library" },
+            { label: "Collections", href: "#collections" },
           ],
         },
         {
-          title: "Build",
+          title: "Theme",
           links: [
-            { label: "Software", href: "#software" },
-            { label: "GitHub", href: "https://github.com/example" },
-            { label: "Contact", href: "mailto:hello@example.com" },
+            { label: "Actions", href: "#actions" },
+            { label: "GitHub", href: "https://github.com/LuganoPlanB/vite-theme" },
+            { label: "Readme", href: "https://github.com/LuganoPlanB/vite-theme#readme" },
           ],
         },
       ],
-      meta: "Open civic technology for residents, builders, and institutions.",
+      meta: "Demonstration content only. Product and editorial content belongs to host sites.",
     },
   };
 }
