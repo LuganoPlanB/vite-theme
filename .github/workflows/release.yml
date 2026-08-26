@@ -20,6 +20,15 @@ jobs:
         with:
           fetch-depth: 0
 
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+      - run: npm test
+      - run: npm run build
+
       - name: Calculate next version
         id: semver
         uses: ietf-tools/semver-action@c90370b2958652d71c06a3484129a4d423a6d8a8 # v1.11.0
@@ -31,26 +40,13 @@ jobs:
           noNewCommitBehavior: current
           noVersionBumpBehavior: current
 
-      - name: Create and push tag
-        if: steps.semver.outputs.bump != 'none'
-        run: |
-          git tag ${{ steps.semver.outputs.next }}
-          git push origin ${{ steps.semver.outputs.next }}
-
-      - name: Update floating major-version tag
-        if: steps.semver.outputs.bump != 'none'
-        run: |
-          MAJOR="v${{ steps.semver.outputs.nextMajorStrict }}"
-          git tag -f "$MAJOR" ${{ steps.semver.outputs.next }}
-          git push -f origin "$MAJOR"
-
       - name: Package theme archive
         if: steps.semver.outputs.bump != 'none'
         run: |
           VERSION="${{ steps.semver.outputs.nextStrict }}"
           PKG="lugano-planb-vite-theme"
 
-          mkdir -p "release/${PKG}/assets"
+          mkdir -p "release/${PKG}/assets/logos"
 
           cp src/theme/index.js   "release/${PKG}/"
           cp src/theme/theme.css  "release/${PKG}/"
@@ -74,6 +70,19 @@ jobs:
           " "${VERSION}"
 
           tar -czf "release/${PKG}.tar.gz" -C release "${PKG}"
+
+      - name: Create and push tag
+        if: steps.semver.outputs.bump != 'none'
+        run: |
+          git tag ${{ steps.semver.outputs.next }}
+          git push origin ${{ steps.semver.outputs.next }}
+
+      - name: Update floating major-version tag
+        if: steps.semver.outputs.bump != 'none'
+        run: |
+          MAJOR="v${{ steps.semver.outputs.nextMajorStrict }}"
+          git tag -f "$MAJOR" ${{ steps.semver.outputs.next }}
+          git push -f origin "$MAJOR"
 
       - name: Create GitHub Release
         if: steps.semver.outputs.bump != 'none'
