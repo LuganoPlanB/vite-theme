@@ -59,9 +59,6 @@
   --planb-card-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.72),
     0 10px 24px rgba(8, 41, 82, 0.06);
-  --planb-card-shadow-hover:
-    inset 0 1px 0 rgba(255, 255, 255, 0.72),
-    0 14px 28px color-mix(in srgb, var(--planb-color-accent) 10%, transparent);
   accent-color: var(--planb-color-accent);
   scrollbar-color: color-mix(in srgb, var(--planb-color-accent) 68%, transparent) color-mix(in srgb, var(--planb-color-canvas-alt) 88%, transparent);
   scrollbar-width: thin;
@@ -121,7 +118,6 @@
     --planb-panel-bar-shadow: 0 0 18px rgba(247, 147, 26, 0.12);
     --planb-card-background: var(--planb-color-panel);
     --planb-card-shadow: none;
-    --planb-card-shadow-hover: 0 18px 34px rgba(0, 0, 0, 0.22);
   }
 
   .planb-eyebrow {
@@ -187,9 +183,6 @@
   --planb-card-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.72),
     0 10px 24px rgba(8, 41, 82, 0.06);
-  --planb-card-shadow-hover:
-    inset 0 1px 0 rgba(255, 255, 255, 0.72),
-    0 14px 28px color-mix(in srgb, var(--planb-color-accent) 10%, transparent);
 }
 
 :root[data-theme="dark"] {
@@ -246,7 +239,6 @@
   --planb-panel-bar-shadow: 0 0 18px rgba(247, 147, 26, 0.12);
   --planb-card-background: var(--planb-color-panel);
   --planb-card-shadow: none;
-  --planb-card-shadow-hover: 0 18px 34px rgba(0, 0, 0, 0.22);
 }
 
 :root[data-theme="dark"] .planb-eyebrow {
@@ -258,6 +250,11 @@ html,
 body {
   margin: 0;
   min-height: 100%;
+}
+
+::selection {
+  background: color-mix(in srgb, var(--planb-color-highlight) 48%, var(--planb-color-canvas));
+  color: var(--planb-color-text);
 }
 
 *,
@@ -629,16 +626,6 @@ h3 {
   box-shadow: var(--planb-card-shadow);
   position: relative;
   overflow: hidden;
-  transition:
-    border-color 160ms ease,
-    box-shadow 160ms ease,
-    transform 160ms ease;
-}
-
-.planb-card:hover {
-  border-color: color-mix(in srgb, var(--planb-color-accent) 36%, transparent);
-  box-shadow: var(--planb-card-shadow-hover);
-  transform: translateY(-2px);
 }
 
 .planb-card p:last-child {
@@ -748,7 +735,8 @@ h3 {
   display: none;
 }
 
-.planb-timeline time {
+.planb-timeline time,
+.planb-timeline-label {
   color: var(--planb-color-accent-strong);
   font-size: 0.84rem;
   font-weight: 800;
@@ -852,6 +840,12 @@ h3 {
 .planb-button-link:hover {
   background: var(--planb-color-accent);
   transform: translateY(-1px);
+}
+
+.planb-header-action:active,
+.planb-theme-toggle:active,
+.planb-button-link:active {
+  transform: translateY(0);
 }
 
 .planb-text-link {
@@ -996,8 +990,13 @@ h3 {
   }
 
   .planb-site-header__inner {
-    align-items: flex-start;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+  }
+
+  .planb-site-nav {
+    grid-column: 1 / -1;
   }
 
   .planb-site-nav ul {
@@ -1033,14 +1032,12 @@ h3 {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .planb-card,
   .planb-button-link,
   .planb-header-action,
   .planb-theme-toggle {
     transition: none;
   }
 
-  .planb-card:hover,
   .planb-button-link:hover,
   .planb-header-action:hover,
   .planb-theme-toggle:hover {

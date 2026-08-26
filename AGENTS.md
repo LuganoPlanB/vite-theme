@@ -5,7 +5,7 @@
 This repository is a small reusable Vite theme package for the Lugano Plan B visual shell.
 
 - The source of truth is the theme itself, not a demo app.
-- The reusable surface is limited to shared CSS, the header markup helpers, and the hero image asset.
+- The reusable surface includes shared CSS, complete page-chrome helpers, content patterns, and the hero image asset.
 - The demo page in `src/main.js` exists to verify the package in isolation.
 - This repo is intentionally minimal and should stay easy to adopt from other Vite projects.
 
@@ -35,9 +35,12 @@ Use this file for the public DOM helpers.
 - Keep the API framework-agnostic and Vite-friendly.
 - Prefer plain DOM operations over framework-specific adapters.
 - Preserve the current functions unless a breaking change is requested:
+  - `createPlanBSiteHeader`
   - `createPlanBHeader`
+  - `createPlanBFooter`
   - `createPlanBPageShell`
   - `mountPlanBHeader`
+  - `initializePlanBThemeToggle`
 - Escape interpolated text before injecting HTML.
 
 ### `src/theme/theme.css`
@@ -52,7 +55,8 @@ Use this file for the reusable theme contract.
 ### `src/theme/domain.js`
 
 - Keep defaults explicit and readable.
-- Preserve required header invariants: `eyebrow`, `title`, and `lede` must always resolve to strings.
+- Preserve required header, site-navigation, and footer invariants; normalized labels, links, and copy must resolve to safe strings.
+- Keep default demo content neutral and separate from host-product claims.
 - Prefer normalization over clever fallback logic.
 
 ### `src/main.js`

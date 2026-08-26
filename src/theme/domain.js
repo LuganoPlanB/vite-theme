@@ -43,7 +43,7 @@ export function createDefaultPlanBThemeContent() {
           ],
         },
       ],
-      meta: "Demonstration content only. Product and editorial content belongs to host sites.",
+      meta: "Demonstration content only. Product and editorial content belong to host sites.",
     },
   };
 }

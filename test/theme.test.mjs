@@ -45,6 +45,34 @@ test("createPlanBSiteHeader renders brand navigation and action", () => {
   assert.match(siteHeader.innerHTML, /mailto:test@example.com/);
 });
 
+test("site header and footer escape host-provided content", () => {
+  globalThis.document = {
+    createElement(tagName) {
+      return {
+        tagName,
+        className: "",
+        innerHTML: "",
+      };
+    },
+  };
+
+  const siteHeader = createPlanBSiteHeader({
+    brand: "<Plan B>",
+    navItems: [{ label: "Cards", href: "#cards" }],
+    action: { label: "Open", href: "#open" },
+  });
+  const footer = createPlanBFooter({
+    brand: "<Plan B>",
+    summary: "Shared & safe",
+    groups: [{ title: "Explore", links: [{ label: "Cards", href: "#cards" }] }],
+    meta: "Demo only",
+  });
+
+  assert.match(siteHeader.innerHTML, /&lt;Plan B&gt;/);
+  assert.doesNotMatch(siteHeader.innerHTML, /<Plan B>/);
+  assert.match(footer.innerHTML, /Shared &amp; safe/);
+});
+
 test("mountPlanBHeader prepends the header markup", () => {
   const target = {
     children: [],
@@ -175,10 +203,15 @@ test("initializePlanBThemeToggle applies and persists manual theme preference", 
       storageValues.set(key, value);
     },
   };
+  const mediaListeners = new Map();
   const mediaQueryList = {
     matches: false,
-    addEventListener() {},
-    removeEventListener() {},
+    addEventListener(type, handler) {
+      mediaListeners.set(type, handler);
+    },
+    removeEventListener(type) {
+      mediaListeners.delete(type);
+    },
   };
   const documentRef = {
     documentElement: root,
@@ -210,4 +243,8 @@ test("initializePlanBThemeToggle applies and persists manual theme preference", 
   assert.equal(themeToggle.textContent, "Use light");
   assert.equal(themeToggle.attributes["aria-pressed"], "true");
   assert.equal(controls.getPreference(), "dark");
+
+  controls.dispose();
+  assert.equal(listeners.has("click"), false);
+  assert.equal(mediaListeners.has("change"), false);
 });

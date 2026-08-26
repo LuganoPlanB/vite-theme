@@ -88,7 +88,7 @@ This system should feel like technology that a city and its people can call thei
 
 The system is lightly layered, gently rounded, and quietly tactile. It is not bunker-like, crypto-bro, bureaucratic, or promotional. Neon cyan, violet, and pink appear mainly as shared gradient energy, focus signals, and small marks; they do not compete as independent brand voices. Dark mode is a supported alternative for preference and context, not the default identity.
 
-This document is normative for the reusable theme. The richer implementation currently vendored in `luganoplanb.github.io/src/theme` is the strongest incumbent evidence; the package code must be brought into parity through a separate implementation task.
+This document is normative for the reusable theme. The package implements these shared tokens and components; `luganoplanb.github.io` remains the first proving ground for refinements before reusable decisions return here.
 
 **Key Characteristics:**
 
@@ -156,13 +156,12 @@ The hero is stacked on small screens and becomes an asymmetric two-column compos
 
 ## Elevation & Depth
 
-Depth is lightly layered and ambient. Panels combine a cool tonal shift, a faint border, a soft navy shadow, and a subtle inset highlight. Cards sit one level lower and lift by only 1–2px on hover. Dark mode removes glossy inset treatment and relies on restrained charcoal layering and shadow.
+Depth is lightly layered and ambient. Panels combine a cool tonal shift, a faint border, a soft navy shadow, and a subtle inset highlight. Cards sit one level lower but remain visually stable unless an explicit control inside them is active. Dark mode removes glossy inset treatment and relies on restrained charcoal layering and shadow.
 
 ### Shadow Vocabulary
 
 - **Panel ambient** (`0 18px 44px rgba(8, 41, 82, 0.08), 0 1px 0 rgba(255, 255, 255, 0.84) inset`): separates major sections from the page without making them float.
 - **Card resting** (`inset 0 1px 0 rgba(255, 255, 255, 0.72), 0 10px 24px rgba(8, 41, 82, 0.06)`): gives small surfaces quiet tactility.
-- **Card hover** (`0 14px 28px` with a 10% Civic Sky tint): pairs with a 2px lift to acknowledge interaction.
 
 **The Quiet Lift Rule.** Shadows explain grouping and state; they never create glossy product mockups or dramatic floating slabs.
 
@@ -185,8 +184,8 @@ Cards use gently rounded 12px corners; major panels use 16px; small identity mar
 
 - **Corner Style:** 12px cards inside 16px panels.
 - **Background:** cool, nearly white tonal layers in light mode; warm charcoal layers in dark mode.
-- **Shadow Strategy:** ambient at rest and slightly stronger only for interactive cards.
-- **Border:** a faint Civic Sky tint that strengthens on hover.
+- **Shadow Strategy:** ambient at rest; interaction belongs to explicit links and controls rather than the whole card surface.
+- **Border:** a faint Civic Sky tint that quietly separates adjacent surfaces.
 - **Internal Padding:** 20px for cards and 28px for panels.
 
 ### Navigation
@@ -222,4 +221,3 @@ The timeline uses a thin blue rail and compact gradient nodes. Labels remain typ
 - **Don't** mimic bureaucracy with dense formality, anonymous institutional blue, rigid document chrome, or passive language.
 - **Don't** turn the system into marketing with oversized claims, ornamental statistics, or conversion-pattern clutter.
 - **Don't** let cyan, violet, pink, gold, coral, and blue all compete independently in one composition.
-

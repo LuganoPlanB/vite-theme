@@ -1,3 +1,33 @@
 {
-  "buildPath": "code"
+  "buildPath": "code",
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "gradient-text",
+        "value": "*",
+        "files": [
+          "src/theme/theme.css"
+        ],
+        "createdAt": "2026-08-26T07:49:49.247Z",
+        "reason": "user confirmed the restrained neon gradient treatment on the white-first shared theme"
+      },
+      {
+        "rule": "overused-font",
+        "value": "inter",
+        "files": [
+          "src/theme/theme.css"
+        ],
+        "createdAt": "2026-08-26T07:49:49.259Z",
+        "reason": "documented incumbent typography in DESIGN.md; polish preserves the established visual identity"
+      },
+      {
+        "rule": "overused-font",
+        "value": "inter",
+        "createdAt": "2026-08-26T07:54:37.692Z",
+        "reason": "User confirmed the existing theme direction; Inter is the documented incumbent typography in DESIGN.md"
+      }
+    ]
+  }
 }

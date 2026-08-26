@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-08-26T09:18:34+02:00",
+  "generatedAt": "2026-08-26T09:52:35+02:00",
   "title": "Design System: Lugano Plan B Shared Theme",
   "extensions": {
     "colorMeta": {
@@ -71,7 +71,7 @@
       "refersTo": "card",
       "description": "A lightly layered information unit for pillars, projects, or short explanations.",
       "html": "<article class=\"ds-card\"><p class=\"ds-card-kicker\">Public work</p><h3>Sovereign infrastructure</h3><p>Modular systems that reduce lock-in and support continuity.</p></article>",
-      "css": ".ds-card { max-width: 28rem; padding: 20px; border: 1px solid rgba(79,151,233,0.2); border-radius: 12px; background: linear-gradient(180deg,rgba(255,255,255,0.9),rgba(243,248,253,0.92)),#f3f8fd; color: #030b20; box-shadow: inset 0 1px 0 rgba(255,255,255,0.72),0 10px 24px rgba(8,41,82,0.06); font-family: Inter, Segoe UI, Arial, sans-serif; transition: border-color 160ms ease, box-shadow 160ms ease, transform 160ms ease; } .ds-card:hover { border-color: rgba(79,151,233,0.36); box-shadow: inset 0 1px 0 rgba(255,255,255,0.72),0 14px 28px rgba(79,151,233,0.1); transform: translateY(-2px); } .ds-card h3 { margin: 0 0 0.7rem; color: #082952; font-size: 1.25rem; line-height: 1.15; } .ds-card p { margin: 0; color: rgba(3,11,32,0.72); line-height: 1.55; } .ds-card .ds-card-kicker { margin-bottom: 0.55rem; color: #4f97e9; font-size: 0.78rem; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; }"
+      "css": ".ds-card { max-width: 28rem; padding: 20px; border: 1px solid rgba(79,151,233,0.2); border-radius: 12px; background: linear-gradient(180deg,rgba(255,255,255,0.9),rgba(243,248,253,0.92)),#f3f8fd; color: #030b20; box-shadow: inset 0 1px 0 rgba(255,255,255,0.72),0 10px 24px rgba(8,41,82,0.06); font-family: Inter, Segoe UI, Arial, sans-serif; } .ds-card h3 { margin: 0 0 0.7rem; color: #082952; font-size: 1.25rem; line-height: 1.15; } .ds-card p { margin: 0; color: rgba(3,11,32,0.72); line-height: 1.55; } .ds-card .ds-card-kicker { margin-bottom: 0.55rem; color: #4f97e9; font-size: 0.78rem; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; }"
     },
     {
       "name": "Commons Panel",
