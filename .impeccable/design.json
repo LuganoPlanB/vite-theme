@@ -1,0 +1,112 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-08-26T09:18:34+02:00",
+  "title": "Design System: Lugano Plan B Shared Theme",
+  "extensions": {
+    "colorMeta": {
+      "civic-sky": { "role": "primary", "displayName": "Civic Sky", "canonical": "#4f97e9", "tonalRamp": ["#0d243a", "#123b61", "#1c5688", "#2b70ae", "#4f97e9", "#85b8f0", "#bdd9f7", "#edf6fd"] },
+      "lugano-night": { "role": "primary", "displayName": "Lugano Night", "canonical": "#082952", "tonalRamp": ["#030a14", "#06152a", "#082952", "#164675", "#38668e", "#7395b3", "#b2c5d8", "#eef4f8"] },
+      "commons-gold": { "role": "secondary", "displayName": "Commons Gold", "canonical": "#ffb604", "tonalRamp": ["#2b1c00", "#553700", "#805300", "#ad7100", "#d99400", "#ffb604", "#ffd86a", "#fff3cf"] },
+      "network-cyan": { "role": "tertiary", "displayName": "Network Cyan", "canonical": "#23f5ff", "tonalRamp": ["#00272a", "#004c52", "#00757d", "#00a2ad", "#00d3de", "#23f5ff", "#94fbff", "#e7feff"] },
+      "assembly-violet": { "role": "tertiary", "displayName": "Assembly Violet", "canonical": "#7468ff", "tonalRamp": ["#14102f", "#29205d", "#3e328a", "#5548b7", "#7468ff", "#a49cff", "#d0ccff", "#f1efff"] },
+      "signal-pink": { "role": "tertiary", "displayName": "Signal Pink", "canonical": "#ff5db1", "tonalRamp": ["#32001c", "#610038", "#920055", "#c51c79", "#e9439a", "#ff5db1", "#ffacd7", "#ffe5f4"] },
+      "warm-canvas": { "role": "neutral", "displayName": "Warm Canvas", "canonical": "#fffefa", "tonalRamp": ["#292824", "#514f49", "#79766e", "#a19e94", "#c9c6bd", "#e6e3dc", "#fffefa", "#ffffff"] },
+      "cool-canvas": { "role": "neutral", "displayName": "Cool Canvas", "canonical": "#f3f9ff", "tonalRamp": ["#111c25", "#243846", "#395568", "#5b7486", "#869dab", "#b6c7d3", "#dce9f1", "#f3f9ff"] },
+      "panel": { "role": "neutral", "displayName": "Quiet Panel", "canonical": "#fcfcfc", "tonalRamp": ["#262626", "#4d4d4d", "#747474", "#9b9b9b", "#c2c2c2", "#dedede", "#f0f0f0", "#fcfcfc"] },
+      "civic-ink": { "role": "neutral", "displayName": "Civic Ink", "canonical": "#030b20", "tonalRamp": ["#030b20", "#111b33", "#26314a", "#46516a", "#6e7890", "#9fa7b8", "#cfd3dc", "#f3f4f7"] }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Display", "purpose": "Short hero statements with decisive civic authority." },
+      "headline": { "displayName": "Headline", "purpose": "Section propositions and primary content divisions." },
+      "title": { "displayName": "Title", "purpose": "Card, timeline, and collection titles." },
+      "body": { "displayName": "Body", "purpose": "Approachable explanatory prose with a measured line length." },
+      "label": { "displayName": "Label", "purpose": "Eyebrows, kickers, metadata, and compact process markers." }
+    },
+    "shadows": [
+      { "name": "panel-ambient", "value": "0 18px 44px rgba(8, 41, 82, 0.08), 0 1px 0 rgba(255, 255, 255, 0.84) inset", "purpose": "Separate major sections from the page without floating them." },
+      { "name": "card-resting", "value": "inset 0 1px 0 rgba(255, 255, 255, 0.72), 0 10px 24px rgba(8, 41, 82, 0.06)", "purpose": "Give small light-theme surfaces quiet tactility." },
+      { "name": "dark-panel", "value": "0 22px 56px rgba(0, 0, 0, 0.28)", "purpose": "Separate charcoal surfaces in dark mode without gloss." }
+    ],
+    "motion": [
+      { "name": "state-standard", "value": "160ms ease", "purpose": "Hover and focus transitions for cards and compact actions; disable under reduced motion." }
+    ],
+    "breakpoints": [
+      { "name": "mobile-collapse", "value": "720px" },
+      { "name": "editorial-split", "value": "760px" },
+      { "name": "wide-hero", "value": "960px" }
+    ],
+    "colorModes": {
+      "light": { "canvas": "#fffefa", "panel": "#fcfcfc", "text": "#030b20", "accent": "#4f97e9", "highlight": "#ffb604" },
+      "dark": { "canvas": "#171717", "panel": "#211d1d", "text": "#ffffff", "accent": "#e15364", "highlight": "#f7931a" }
+    }
+  },
+  "components": [
+    {
+      "name": "Primary Action",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "The compact high-emphasis action used to move from explanation to a concrete project or resource.",
+      "html": "<a class=\"ds-button-primary\" href=\"#\">Explore projects</a>",
+      "css": ".ds-button-primary { display: inline-flex; align-items: center; min-height: 2.5rem; padding: 0.62rem 0.95rem; border: 1px solid rgba(79,151,233,0.2); border-radius: 999px; background: var(--planb-color-accent-strong, #082952); color: var(--planb-color-canvas, #fffefa); font: 800 0.82rem/1.2 Inter, Segoe UI, Arial, sans-serif; text-decoration: none; transition: background-color 160ms ease, transform 160ms ease; } .ds-button-primary:hover { background: var(--planb-color-accent, #4f97e9); transform: translateY(-1px); } .ds-button-primary:focus-visible { outline: 2px solid var(--planb-color-neon-cyan, #23f5ff); outline-offset: 3px; }"
+    },
+    {
+      "name": "Secondary Action",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "A bordered pill for navigation-level actions that should remain visible without dominating.",
+      "html": "<a class=\"ds-button-secondary\" href=\"#\">View project</a>",
+      "css": ".ds-button-secondary { display: inline-flex; align-items: center; min-height: 2.5rem; padding: 0.58rem 0.9rem; border: 1px solid rgba(79,151,233,0.2); border-radius: 999px; background: var(--planb-color-panel, #fcfcfc); color: var(--planb-color-accent-strong, #082952); font: 800 0.82rem/1.2 Inter, Segoe UI, Arial, sans-serif; text-decoration: none; box-shadow: 0 10px 22px rgba(3,11,32,0.08); transition: border-color 160ms ease, box-shadow 160ms ease, transform 160ms ease; } .ds-button-secondary:hover { border-color: rgba(79,151,233,0.42); box-shadow: 0 14px 28px rgba(79,151,233,0.12); transform: translateY(-1px); } .ds-button-secondary:focus-visible { outline: 2px solid var(--planb-color-neon-cyan, #23f5ff); outline-offset: 3px; }"
+    },
+    {
+      "name": "Theme Toggle",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "An explicit preference control with a shared gradient status dot.",
+      "html": "<button class=\"ds-theme-toggle\" type=\"button\"><span aria-hidden=\"true\"></span>Use dark</button>",
+      "css": ".ds-theme-toggle { display: inline-flex; gap: 0.55rem; align-items: center; justify-content: center; min-height: 2.75rem; padding: 0.7rem 1rem; border: 1px solid rgba(79,151,233,0.2); border-radius: 999px; background: var(--planb-color-panel, #fcfcfc); color: var(--planb-color-accent-strong, #082952); font: 700 0.85rem/1.2 Inter, Segoe UI, Arial, sans-serif; letter-spacing: 0.08em; text-transform: uppercase; cursor: pointer; transition: transform 160ms ease, border-color 160ms ease; } .ds-theme-toggle span { width: 0.72rem; height: 0.72rem; border-radius: 999px; background: linear-gradient(90deg,#ffb604,#ff5db1 28%,#7468ff 58%,#23f5ff); box-shadow: 0 0 0 3px rgba(79,151,233,0.14); } .ds-theme-toggle:hover { border-color: rgba(79,151,233,0.44); transform: translateY(-1px); } .ds-theme-toggle:focus-visible { outline: 2px solid #23f5ff; outline-offset: 3px; }"
+    },
+    {
+      "name": "Civic Card",
+      "kind": "card",
+      "refersTo": "card",
+      "description": "A lightly layered information unit for pillars, projects, or short explanations.",
+      "html": "<article class=\"ds-card\"><p class=\"ds-card-kicker\">Public work</p><h3>Sovereign infrastructure</h3><p>Modular systems that reduce lock-in and support continuity.</p></article>",
+      "css": ".ds-card { max-width: 28rem; padding: 20px; border: 1px solid rgba(79,151,233,0.2); border-radius: 12px; background: linear-gradient(180deg,rgba(255,255,255,0.9),rgba(243,248,253,0.92)),#f3f8fd; color: #030b20; box-shadow: inset 0 1px 0 rgba(255,255,255,0.72),0 10px 24px rgba(8,41,82,0.06); font-family: Inter, Segoe UI, Arial, sans-serif; transition: border-color 160ms ease, box-shadow 160ms ease, transform 160ms ease; } .ds-card:hover { border-color: rgba(79,151,233,0.36); box-shadow: inset 0 1px 0 rgba(255,255,255,0.72),0 14px 28px rgba(79,151,233,0.1); transform: translateY(-2px); } .ds-card h3 { margin: 0 0 0.7rem; color: #082952; font-size: 1.25rem; line-height: 1.15; } .ds-card p { margin: 0; color: rgba(3,11,32,0.72); line-height: 1.55; } .ds-card .ds-card-kicker { margin-bottom: 0.55rem; color: #4f97e9; font-size: 0.78rem; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; }"
+    },
+    {
+      "name": "Commons Panel",
+      "kind": "custom",
+      "refersTo": "panel",
+      "description": "The major section surface, identified by a short masked band of network energy.",
+      "html": "<section class=\"ds-panel\"><p class=\"ds-eyebrow\">Our mandate</p><h2>A city that can govern its digital future.</h2><p>Public-interest technology begins with shared understanding.</p></section>",
+      "css": ".ds-panel { position: relative; overflow: hidden; max-width: 42rem; padding: 28px; border: 1px solid rgba(79,151,233,0.2); border-radius: 16px; background: linear-gradient(180deg,rgba(255,255,255,0.98),rgba(243,249,255,0.98)),#fcfcfc; color: #030b20; box-shadow: 0 18px 44px rgba(8,41,82,0.08),0 1px 0 rgba(255,255,255,0.84) inset; font-family: Inter, Segoe UI, Arial, sans-serif; } .ds-panel::before { content: \"\"; position: absolute; inset: 0 auto auto 0; width: 24rem; height: 0.75rem; background: linear-gradient(90deg,#ffb604,#ff5db1 28%,#7468ff 58%,#23f5ff); mask: linear-gradient(90deg,#000 0%,#000 80%,transparent); } .ds-panel h2 { margin: 0 0 0.75rem; color: #082952; font-size: 2rem; line-height: 1.12; } .ds-panel p { margin: 0; color: rgba(3,11,32,0.72); line-height: 1.6; } .ds-panel .ds-eyebrow { margin: 0 0 0.65rem; color: #082952; font-size: 0.82rem; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; }"
+    },
+    {
+      "name": "Site Navigation",
+      "kind": "nav",
+      "description": "A wrapping civic navigation row with a compact brand mark and clear focus states.",
+      "html": "<nav class=\"ds-nav\" aria-label=\"Primary\"><a class=\"ds-brand\" href=\"#\"><span aria-hidden=\"true\"></span>Plan B Foundation</a><div><a href=\"#\">Mandate</a><a href=\"#\">Projects</a><a href=\"#\">Participate</a></div></nav>",
+      "css": ".ds-nav { display: flex; flex-wrap: wrap; gap: 14px 24px; align-items: center; justify-content: space-between; padding: 16px 0; color: #030b20; font-family: Inter, Segoe UI, Arial, sans-serif; } .ds-nav a { color: rgba(3,11,32,0.72); font-size: 0.92rem; font-weight: 700; text-decoration: none; } .ds-nav > div { display: flex; flex-wrap: wrap; gap: 0.35rem 1rem; } .ds-nav .ds-brand { display: inline-flex; gap: 0.65rem; align-items: center; color: #082952; font-weight: 800; } .ds-brand span { width: 0.95rem; height: 0.95rem; border-radius: 999px; background: linear-gradient(90deg,#ffb604,#ff5db1 28%,#7468ff 58%,#23f5ff); box-shadow: 0 0 12px rgba(35,245,255,0.24); } .ds-nav a:hover { color: #082952; } .ds-nav a:focus-visible { outline: 2px solid #23f5ff; outline-offset: 3px; }"
+    },
+    {
+      "name": "Process Timeline",
+      "kind": "custom",
+      "description": "A compact rail for explaining civic experimentation as a sequence rather than a sales funnel.",
+      "html": "<ol class=\"ds-timeline\"><li><strong>Learn</strong><div><h3>Build common understanding</h3><p>Frame the public need before selecting a solution.</p></div></li><li><strong>Test</strong><div><h3>Prototype with safeguards</h3><p>Start small and assess evidence, risk, and benefit.</p></div></li></ol>",
+      "css": ".ds-timeline { display: grid; gap: 0; margin: 0; padding: 0; list-style: none; color: #030b20; font-family: Inter, Segoe UI, Arial, sans-serif; } .ds-timeline li { position: relative; display: grid; grid-template-columns: 5rem minmax(0,1fr); gap: 18px; padding: 0 0 28px; } .ds-timeline li::before { content: \"\"; position: absolute; inset: 0 auto 0 calc(5rem + 0.48rem); width: 1px; background: rgba(79,151,233,0.28); } .ds-timeline li::after { content: \"\"; position: absolute; top: 0.34rem; left: calc(5rem + 0.12rem); width: 0.76rem; height: 0.76rem; border-radius: 999px; background: linear-gradient(90deg,#ffb604,#ff5db1 28%,#7468ff 58%,#23f5ff); box-shadow: 0 0 0 5px rgba(79,151,233,0.12); } .ds-timeline li:last-child { padding-bottom: 0; } .ds-timeline li:last-child::before { display: none; } .ds-timeline strong { color: #082952; font-size: 0.84rem; letter-spacing: 0.08em; text-transform: uppercase; } .ds-timeline h3 { margin: 0 0 0.45rem; color: #082952; font-size: 1.2rem; } .ds-timeline p { margin: 0; color: rgba(3,11,32,0.72); line-height: 1.55; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Civic Digital Commons",
+    "overview": "This system should feel like technology that a city and its people can call their own: open, capable, curious, grounded, and collective. It combines the legibility and trust expected of public-interest work with the energy of a living hacker community. The light theme is the primary expression: an open white field, dark civic typography, and precise blue structure with small flashes of electric color. The system is lightly layered, gently rounded, and quietly tactile. It is not bunker-like, crypto-bro, bureaucratic, or promotional. Neon cyan, violet, and pink appear mainly as shared gradient energy, focus signals, and small marks; they do not compete as independent brand voices. Dark mode is a supported alternative for preference and context, not the default identity.",
+    "keyCharacteristics": ["White-first civic clarity with a fully supported dark alternative.", "Strong navy typography, civic blue structure, and selective commons gold.", "Electric gradient details used as connective tissue, never as visual noise.", "Rounded, layered surfaces with restrained ambient lift.", "Dense enough for serious information, open enough for curious newcomers."],
+    "rules": [
+      { "name": "The White Commons Rule", "body": "New surfaces begin in the light theme unless the host product or user preference explicitly selects dark mode.", "section": "colors" },
+      { "name": "The One Signal Rule", "body": "A composition may use navy and blue freely, but gold or the electric gradient carries the single exceptional signal; do not scatter both across every element.", "section": "colors" },
+      { "name": "The Weight Before Ornament Rule", "body": "Establish hierarchy through size, weight, spacing, and measure before adding gradient text or decorative effects.", "section": "typography" },
+      { "name": "The Quiet Lift Rule", "body": "Shadows explain grouping and state; they never create glossy product mockups or dramatic floating slabs.", "section": "elevation" }
+    ],
+    "dos": ["Do begin with Warm Canvas, Civic Ink, Lugano Night, and Civic Sky before reaching for additional color.", "Do use the electric trio as a shared gradient, small focus signal, or connective mark.", "Do keep hierarchy decisive with bold headings, measured prose, and compact labels.", "Do preserve keyboard focus, reduced-motion behavior, responsive collapse, and explicit light/dark preference.", "Do prototype accepted system changes on the foundation website, then upstream reusable decisions into the theme package."],
+    "donts": ["Don't use bunker language: avoid oppressive black slabs, military dashboards, terminal cosplay, or security-theater styling.", "Don't imitate crypto-bro aesthetics with speculative glow, coin imagery, luxury gradients, or hype-driven calls to action.", "Don't mimic bureaucracy with dense formality, anonymous institutional blue, rigid document chrome, or passive language.", "Don't turn the system into marketing with oversized claims, ornamental statistics, or conversion-pattern clutter.", "Don't let cyan, violet, pink, gold, coral, and blue all compete independently in one composition."]
+  }
+}
