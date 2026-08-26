@@ -12,6 +12,11 @@ colors:
   cool-canvas: "#f3f9ff"
   panel: "#fcfcfc"
   civic-ink: "#030b20"
+  civic-mist: "#b0d3f1"
+  civic-coral: "#e15364"
+  bitcoin-orange: "#f7931a"
+  dark-canvas: "#171717"
+  shadow-black: "#000000"
 typography:
   display:
     fontFamily: "Inter, Segoe UI, Arial, sans-serif"
@@ -39,7 +44,43 @@ typography:
     fontWeight: 800
     lineHeight: 1.2
     letterSpacing: "0.08em"
+  navigation:
+    fontFamily: "Inter, Segoe UI, Arial, sans-serif"
+    fontSize: "0.92rem"
+    fontWeight: 700
+    lineHeight: 1.2
+  action:
+    fontFamily: "Inter, Segoe UI, Arial, sans-serif"
+    fontSize: "0.88rem"
+    fontWeight: 800
+    lineHeight: 1.2
+  lede:
+    fontFamily: "Inter, Segoe UI, Arial, sans-serif"
+    fontSize: "clamp(1rem, 2vw, 1.35rem)"
+    fontWeight: 400
+    lineHeight: 1.5
+  kicker:
+    fontFamily: "Inter, Segoe UI, Arial, sans-serif"
+    fontSize: "0.78rem"
+    fontWeight: 800
+    lineHeight: 1.2
+  mark:
+    fontFamily: "Inter, Segoe UI, Arial, sans-serif"
+    fontSize: "0.9rem"
+    fontWeight: 800
+    lineHeight: 1.2
+  metadata:
+    fontFamily: "Inter, Segoe UI, Arial, sans-serif"
+    fontSize: "0.75rem"
+    fontWeight: 800
+    lineHeight: 1.2
+  code:
+    fontFamily: "Consolas, SFMono-Regular, monospace"
+    fontSize: "0.9em"
+    fontWeight: 400
+    lineHeight: 1.5
 rounded:
+  lede: "10px"
   card: "12px"
   panel: "16px"
   mark: "14px"
@@ -58,14 +99,14 @@ components:
     typography: "{typography.label}"
     rounded: "{rounded.pill}"
     padding: "0.62rem 0.95rem"
-    height: "2.5rem"
+    height: "2.75rem"
   button-secondary:
     backgroundColor: "{colors.panel}"
     textColor: "{colors.lugano-night}"
     typography: "{typography.label}"
     rounded: "{rounded.pill}"
     padding: "0.58rem 0.9rem"
-    height: "2.5rem"
+    height: "2.75rem"
   card:
     backgroundColor: "{colors.cool-canvas}"
     textColor: "{colors.civic-ink}"
@@ -139,7 +180,7 @@ Dark mode switches the canvas to charcoal (`#171717`), panels to warm black (`#2
 ### Hierarchy
 
 - **Display** (800, fluid display scale, 1.08): short hero statements, balanced to roughly 14–15 characters per line where the layout permits.
-- **Headline** (800, fluid headline scale, 1.12): section propositions and primary content divisions, often carrying the shared heading gradient.
+- **Headline** (800, fluid headline scale, 1.12): section propositions and primary content divisions in solid Lugano Night or the dark-theme foreground.
 - **Title** (700, fluid title scale, 1.15): card and timeline titles with compact line spacing.
 - **Body** (400, base text scale, 1.6): explanatory prose, generally constrained to 40–56rem for readable measure.
 - **Label** (800, compact label scale, 0.08em tracking, uppercase): eyebrows, kickers, metadata, and short process markers.
@@ -175,10 +216,10 @@ Cards use gently rounded 12px corners; major panels use 16px; small identity mar
 
 ### Buttons
 
-- **Shape:** compact pill controls with a minimum height of 2.5rem.
+- **Shape:** compact pill controls with a minimum height of 2.75rem for a 44px default interaction target.
 - **Primary:** Lugano Night ground with Warm Canvas text and 0.62rem by 0.95rem padding.
 - **Secondary:** Quiet Panel ground, blue-tinted border, and Lugano Night text.
-- **Hover / Focus:** lift by 1px, strengthen the blue signal, and use a 2px Network Cyan focus outline with 3px offset.
+- **Hover / Focus:** lift by 1px, retain an AA-compliant dark action ground, and use a 2px Assembly Violet focus outline with 3px offset.
 
 ### Cards / Containers
 
@@ -190,7 +231,7 @@ Cards use gently rounded 12px corners; major panels use 16px; small identity mar
 
 ### Navigation
 
-Navigation is a flexible, wrapping row of compact bold links. The brand uses a small electric gradient dot; the principal action is a bordered pill. Links move from softened Civic Ink to Lugano Night on hover, with the common cyan focus treatment.
+Navigation is a flexible, wrapping row of compact bold links. The brand uses a small electric gradient dot; the principal action is a bordered pill. Links move from softened Civic Ink to Lugano Night on hover, with the common violet focus treatment.
 
 ### Hero
 
