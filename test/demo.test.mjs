@@ -33,7 +33,16 @@ test("demo showcases every documented content pattern", () => {
 test("demo stays content-neutral and contains no placeholder destinations", () => {
   assert.doesNotMatch(demoSource, /civic hacking|smart cit|open city data/i);
   assert.doesNotMatch(demoSource, /example\.com|github\.com\/example/i);
-  assert.match(demoSource, /intentionally generic/i);
+  assert.match(demoSource, /application keeps its routes/i);
+});
+
+test("demo teaches adoption and exposes the Plan B asset contract", () => {
+  assert.match(demoSource, /id="planb-install-code"/);
+  assert.match(demoSource, /data-copy-code="planb-install-code"/);
+  assert.match(demoSource, /class="planb-specimen-contract"/);
+  assert.match(demoSource, /planb-logo-asset--wide/);
+  assert.match(demoSource, /planb-logo-asset--bitcoin/);
+  assert.match(demoSource, /planb-logo-asset--square/);
 });
 
 test("shared interaction states use contrast-safe semantic colors", () => {
@@ -60,5 +69,7 @@ test("shared collections and actions remain usable at narrow widths", () => {
   assert.match(themeSource, /\.planb-button-link \{[\s\S]*?min-height: 2\.75rem/);
   assert.match(themeSource, /\.planb-footer__nav a \{[\s\S]*?min-height: 2\.75rem/);
   assert.match(themeSource, /\.planb-page-shell \{[\s\S]*?overflow-wrap: anywhere/);
+  assert.match(themeSource, /\.planb-skip-link:focus-visible/);
+  assert.match(themeSource, /\.planb-specimen-index \{[\s\S]*?position: sticky/);
   assert.match(indexSource, /rel="icon"/);
 });

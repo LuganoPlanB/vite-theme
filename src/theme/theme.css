@@ -15,6 +15,7 @@
   --planb-color-neon-cyan: #23f5ff;
   --planb-color-neon-violet: #7468ff;
   --planb-color-neon-pink: #ff5db1;
+  --planb-color-brand-night: #082952;
   --planb-color-focus: var(--planb-color-neon-violet);
   --planb-gradient-rainbow: linear-gradient(90deg, #ffb604 0%, #ff5db1 28%, #7468ff 58%, #23f5ff 100%);
   --planb-gradient-heading: linear-gradient(90deg, #082952 0%, #4f97e9 32%, #7468ff 64%, #23f5ff 100%);
@@ -32,7 +33,7 @@
     linear-gradient(180deg, #ffffff 0%, #f7fbff 40%, #fffefa 100%),
     var(--planb-color-canvas);
   --planb-hero-background:
-    url("./assets/front_hero_desktop_frame.jpg") center / cover no-repeat,
+    url("./assets/heroes/palacongr_orange_pill.jpg") center / cover no-repeat,
     linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.28)),
     var(--planb-color-canvas-alt);
   --planb-hero-orb-background: radial-gradient(circle, rgba(35, 245, 255, 0.26) 0%, rgba(116, 104, 255, 0.12) 40%, transparent 72%);
@@ -96,7 +97,7 @@
       linear-gradient(180deg, rgba(23, 23, 23, 0.98), rgba(26, 22, 22, 1)),
       var(--planb-color-canvas);
     --planb-hero-background:
-      url("./assets/front_hero_desktop_frame.jpg") center / cover no-repeat,
+      url("./assets/heroes/palacongr_orange_pill.jpg") center / cover no-repeat,
       linear-gradient(180deg, rgba(0, 0, 0, 0.12), rgba(0, 0, 0, 0.42)),
       var(--planb-color-canvas);
     --planb-hero-orb-background: radial-gradient(circle, rgba(225, 83, 100, 0.22) 0%, rgba(247, 147, 26, 0.12) 42%, transparent 72%);
@@ -160,7 +161,7 @@
     linear-gradient(180deg, #ffffff 0%, #f7fbff 40%, #fffefa 100%),
     var(--planb-color-canvas);
   --planb-hero-background:
-    url("./assets/front_hero_desktop_frame.jpg") center / cover no-repeat,
+    url("./assets/heroes/palacongr_orange_pill.jpg") center / cover no-repeat,
     linear-gradient(180deg, rgba(255, 255, 255, 0.45), rgba(255, 255, 255, 0.78)),
     var(--planb-color-canvas-alt);
   --planb-hero-orb-background: radial-gradient(circle, rgba(35, 245, 255, 0.26) 0%, rgba(116, 104, 255, 0.12) 40%, transparent 72%);
@@ -219,7 +220,7 @@
     linear-gradient(180deg, rgba(23, 23, 23, 0.98), rgba(26, 22, 22, 1)),
     var(--planb-color-canvas);
   --planb-hero-background:
-    url("./assets/front_hero_desktop_frame.jpg") center / cover no-repeat,
+    url("./assets/heroes/palacongr_orange_pill.jpg") center / cover no-repeat,
     linear-gradient(180deg, rgba(0, 0, 0, 0.12), rgba(0, 0, 0, 0.42)),
     var(--planb-color-canvas);
   --planb-hero-orb-background: radial-gradient(circle, rgba(225, 83, 100, 0.22) 0%, rgba(247, 147, 26, 0.12) 42%, transparent 72%);
@@ -296,6 +297,27 @@ h3 {
   min-height: 100dvh;
 }
 
+.planb-skip-link {
+  position: fixed;
+  inset: 0.75rem auto auto 0.75rem;
+  z-index: 20;
+  min-height: 2.75rem;
+  padding: 0.7rem 1rem;
+  border-radius: 999px;
+  background: var(--planb-color-accent-strong);
+  color: var(--planb-color-canvas);
+  font-weight: 800;
+  text-decoration: none;
+  transform: translateY(calc(-100% - 1.5rem));
+  transition: transform 160ms ease;
+}
+
+.planb-skip-link:focus-visible {
+  outline: 2px solid var(--planb-color-focus);
+  outline-offset: 3px;
+  transform: translateY(0);
+}
+
 .planb-site-header {
   position: relative;
   z-index: 2;
@@ -331,11 +353,9 @@ h3 {
 
 .planb-brand__mark {
   display: inline-block;
-  inline-size: 0.95rem;
-  block-size: 0.95rem;
-  border-radius: 999px;
-  background: var(--planb-gradient-rainbow);
-  box-shadow: var(--planb-eyebrow-dot-shadow);
+  inline-size: 1.4rem;
+  block-size: 1.4rem;
+  background: url("./assets/logos/bitcoin.svg") center / contain no-repeat;
 }
 
 .planb-site-nav ul {
@@ -456,7 +476,7 @@ h3 {
   gap: 0.55rem;
   justify-self: end;
   align-self: start;
-  min-width: 7.75rem;
+  min-width: 12rem;
   min-height: 2.75rem;
   padding: 0.7rem 1rem;
   border: var(--planb-border-soft);
@@ -528,8 +548,8 @@ h3 {
 
 .planb-hero h1 {
   color: var(--planb-color-accent-strong);
-  max-width: 15ch;
-  font-size: clamp(3rem, 8vw, 4.75rem);
+  max-width: 18ch;
+  font-size: clamp(2.65rem, 7vw, 4.25rem);
   font-weight: 800;
   line-height: 1.08;
   text-wrap: balance;
@@ -578,6 +598,125 @@ h3 {
   padding: 56px 0 96px;
 }
 
+.planb-specimen-index {
+  position: sticky;
+  top: 0;
+  z-index: 3;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.35rem;
+  padding: 0.4rem;
+  border: var(--planb-border-soft);
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--planb-color-canvas) 94%, transparent);
+  box-shadow: 0 10px 24px color-mix(in srgb, var(--planb-color-text) 8%, transparent);
+}
+
+.planb-specimen-index a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.75rem;
+  padding-inline: 0.8rem;
+  border-radius: 999px;
+  color: var(--planb-color-text-soft);
+  font-size: 0.86rem;
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.planb-specimen-index a:hover {
+  background: var(--planb-color-panel);
+  color: var(--planb-color-accent-strong);
+}
+
+.planb-specimen-index a:focus-visible,
+.planb-code-sample button:focus-visible,
+.planb-code-sample pre:focus-visible {
+  outline: 2px solid var(--planb-color-focus);
+  outline-offset: 3px;
+}
+
+.planb-brand-manifesto {
+  display: grid;
+  gap: 32px;
+  margin-top: 28px;
+  padding: clamp(24px, 5vw, 48px);
+  border-radius: 16px;
+  background:
+    linear-gradient(135deg, rgba(79, 151, 233, 0.2), transparent 48%),
+    var(--planb-color-brand-night);
+  color: #fff;
+  box-shadow: 0 22px 52px rgba(8, 41, 82, 0.2);
+}
+
+.planb-brand-manifesto__identity,
+.planb-brand-manifesto__adoption {
+  display: grid;
+  align-content: start;
+  gap: 16px;
+  min-width: 0;
+}
+
+.planb-brand-manifesto__identity img {
+  width: min(15rem, 100%);
+  height: auto;
+}
+
+.planb-brand-manifesto h2 {
+  max-width: 14ch;
+  color: #fff;
+  font-size: clamp(2rem, 5vw, 3.25rem);
+}
+
+.planb-brand-manifesto p {
+  max-width: 65ch;
+  margin: 0;
+  color: rgba(255, 255, 255, 0.82);
+  line-height: 1.6;
+  text-wrap: pretty;
+}
+
+.planb-code-sample {
+  display: grid;
+  gap: 10px;
+  min-width: 0;
+}
+
+.planb-code-sample pre {
+  max-width: 100%;
+  margin: 0;
+  padding: 16px;
+  overflow-x: auto;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 12px;
+  background: rgba(3, 11, 32, 0.72);
+  color: #fff;
+  line-height: 1.55;
+}
+
+.planb-code-sample button {
+  width: fit-content;
+  min-height: 2.75rem;
+  padding: 0.65rem 1rem;
+  border: 0;
+  border-radius: 999px;
+  background: var(--planb-color-highlight);
+  color: var(--planb-color-brand-night);
+  font: inherit;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.planb-copy-status {
+  min-height: 1.6em;
+  font-size: 0.9rem;
+}
+
+:where(#adopt, #foundation, #cards, #timeline, #collections, #actions) {
+  scroll-margin-top: 4.5rem;
+}
+
 .planb-panel {
   margin-top: 28px;
   padding: 28px;
@@ -605,6 +744,16 @@ h3 {
   margin-top: 0;
 }
 
+.planb-panel--foundation {
+  background:
+    linear-gradient(120deg, color-mix(in srgb, var(--planb-color-accent-soft) 34%, transparent), transparent 52%),
+    var(--planb-panel-background);
+}
+
+.planb-panel--examples::before {
+  width: 8rem;
+}
+
 .planb-section-heading {
   display: grid;
   gap: 10px;
@@ -613,10 +762,32 @@ h3 {
 
 .planb-section-heading p {
   margin: 0;
-  max-width: 56rem;
+  max-width: 70ch;
   font-size: 1rem;
   line-height: 1.6;
   text-wrap: pretty;
+}
+
+.planb-specimen-contract {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: center;
+  margin: -8px 0 24px;
+  color: var(--planb-color-text-soft);
+  font-size: 0.82rem;
+}
+
+.planb-specimen-contract span {
+  font-weight: 800;
+}
+
+.planb-specimen-contract code {
+  padding: 0.25rem 0.5rem;
+  border: var(--planb-border-soft);
+  border-radius: 6px;
+  background: var(--planb-color-panel);
+  color: var(--planb-color-accent-strong);
 }
 
 .planb-grid {
@@ -683,6 +854,30 @@ h3 {
   color: var(--planb-color-accent-strong);
   font-size: 0.9rem;
   font-weight: 800;
+}
+
+.planb-logo-asset {
+  inline-size: 100%;
+  min-block-size: 4.5rem;
+  border-radius: 12px;
+  background-color: #fffefa;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.planb-logo-asset--wide {
+  background-image: url("./assets/logos/lugano_planb_2026_logo_wide_black.svg");
+  background-size: min(12rem, 84%) auto;
+}
+
+.planb-logo-asset--bitcoin {
+  background-image: url("./assets/logos/bitcoin.svg");
+  background-size: 3.25rem auto;
+}
+
+.planb-logo-asset--square {
+  background-image: url("./assets/logos/lugano_planb_2026_logo_square_black.svg");
+  background-size: min(10rem, 78%) auto;
 }
 
 .planb-logo-card h3,
@@ -971,7 +1166,7 @@ h3 {
   }
 
   .planb-hero h1 {
-    max-width: 14ch;
+    max-width: 18ch;
   }
 
   .planb-lede {
@@ -986,6 +1181,10 @@ h3 {
   .planb-footer__meta {
     grid-column: 1 / -1;
   }
+
+  .planb-brand-manifesto {
+    grid-template-columns: minmax(14rem, 0.8fr) minmax(0, 1.2fr);
+  }
 }
 
 @media (max-width: 720px) {
@@ -994,7 +1193,7 @@ h3 {
   }
 
   .planb-hero__inner {
-    padding: 68px 0 72px;
+    padding: 56px 0 60px;
   }
 
   .planb-theme-toggle {
@@ -1017,6 +1216,7 @@ h3 {
   }
 
   .planb-panel {
+    margin-top: 18px;
     padding: 20px;
     border-radius: 14px;
   }
@@ -1027,6 +1227,38 @@ h3 {
 
   .planb-grid {
     grid-template-columns: 1fr;
+  }
+
+  .planb-main {
+    padding: 36px 0 64px;
+  }
+
+  .planb-main h2 {
+    font-size: clamp(1.75rem, 9vw, 2.6rem);
+  }
+
+  .planb-specimen-index {
+    border-radius: 14px;
+  }
+
+  .planb-specimen-index a {
+    padding-inline: 0.35rem;
+    font-size: 0.78rem;
+  }
+
+  .planb-brand-manifesto {
+    gap: 24px;
+    margin-top: 18px;
+    padding: 24px 20px;
+    border-radius: 14px;
+  }
+
+  .planb-section-heading {
+    margin-bottom: 18px;
+  }
+
+  .planb-specimen-contract {
+    margin-bottom: 18px;
   }
 
   .planb-timeline__item {
@@ -1047,6 +1279,7 @@ h3 {
 @media (prefers-reduced-motion: reduce) {
   .planb-button-link,
   .planb-header-action,
+  .planb-skip-link,
   .planb-theme-toggle {
     transition: none;
   }

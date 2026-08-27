@@ -1,4 +1,5 @@
 import "./theme/theme.css";
+import planBWideLogoUrl from "./theme/assets/logos/lugano_planb_2026_logo_wide_color.svg";
 
 import {
   createPlanBFooter,
@@ -17,18 +18,47 @@ app.replaceChildren(
     header: createPlanBHeader(defaultPlanBThemeContent.header),
     footer: createPlanBFooter(defaultPlanBThemeContent.footer),
     mainContent: `
-      <section class="planb-panel" id="foundation">
-        <div class="planb-section-heading">
-          <p class="planb-eyebrow">Foundation patterns</p>
-          <h2>Panels, headings, and responsive grids.</h2>
+      <nav class="planb-specimen-index" aria-label="Theme specimens">
+        <a href="#adopt">Start</a>
+        <a href="#cards">Cards</a>
+        <a href="#timeline">Timeline</a>
+        <a href="#collections">Patterns</a>
+      </nav>
+
+      <section class="planb-brand-manifesto" id="adopt">
+        <div class="planb-brand-manifesto__identity">
+          <img src="${planBWideLogoUrl}" alt="Lugano's Plan B" width="236" height="61">
+          <p>Shared civic technology, carried consistently across independent Plan B sites.</p>
+        </div>
+        <div class="planb-brand-manifesto__adoption">
+          <h2>Start with the shared shell.</h2>
           <p>
-            This specimen page demonstrates the reusable visual language. Its labels are
-            intentionally generic so applications remain the owners of their content.
+            Import the theme and its plain DOM helpers. Your application keeps its routes,
+            content, and business logic.
           </p>
+          <div class="planb-code-sample">
+            <pre tabindex="0"><code id="planb-install-code">import "lugano-planb-vite-theme/theme.css";
+import { createPlanBPageShell } from "lugano-planb-vite-theme";</code></pre>
+            <button type="button" data-copy-code="planb-install-code">Copy imports</button>
+          </div>
+          <p class="planb-copy-status" data-copy-status aria-live="polite"></p>
         </div>
       </section>
 
-      <section class="planb-panel planb-grid" aria-label="Card examples">
+      <section class="planb-panel planb-panel--foundation" id="foundation">
+        <div class="planb-section-heading">
+          <h2>Foundation patterns</h2>
+          <p>Use panels, headings, and responsive grids to structure host-owned content.</p>
+        </div>
+        <div class="planb-specimen-contract">
+          <span>Layout contract</span>
+          <code>.planb-panel</code>
+          <code>.planb-grid</code>
+          <code>--planb-color-canvas</code>
+        </div>
+      </section>
+
+      <section class="planb-panel planb-grid planb-panel--examples" aria-label="Card examples">
         <article class="planb-card">
           <h3>Standard card</h3>
           <p>A compact surface for one idea, status, service, or short piece of supporting copy.</p>
@@ -37,42 +67,39 @@ app.replaceChildren(
           <h3>Second card</h3>
           <p>Cards flow into responsive columns without requiring a framework-specific component.</p>
         </article>
-        <article class="planb-card">
-          <h3>Third card</h3>
-          <p>Host sites can combine theme tokens with their own domain-specific classes and content.</p>
-        </article>
-        <article class="planb-card">
-          <h3>Fourth card</h3>
-          <p>Light and dark appearances use the same semantic markup and theme custom properties.</p>
-        </article>
       </section>
 
       <section class="planb-panel" id="cards">
         <div class="planb-section-heading">
-          <p class="planb-eyebrow">Identity cards</p>
-          <h2>Marks for teams, products, or collections.</h2>
-          <p>The mark and copy are placeholders that expose spacing, hierarchy, and wrapping.</p>
+          <h2>Plan B identity assets</h2>
+          <p>Official lockups and marks keep host sites recognizably connected without sharing content.</p>
+        </div>
+        <div class="planb-specimen-contract">
+          <span>Identity contract</span>
+          <code>.planb-logo-card</code>
+          <code>.planb-logo-mark</code>
+          <code>assets/logos/</code>
         </div>
         <div class="planb-logo-grid">
           <article class="planb-logo-card">
-            <div class="planb-logo-mark" aria-hidden="true">AA</div>
+            <div class="planb-logo-asset planb-logo-asset--wide" aria-hidden="true"></div>
             <div>
-              <h3>Example alpha</h3>
-              <p>A short description demonstrates the default compact card rhythm.</p>
+              <h3>Wide lockup</h3>
+              <p>Use where the full Lugano Plan B name has room to breathe.</p>
             </div>
           </article>
           <article class="planb-logo-card">
-            <div class="planb-logo-mark" aria-hidden="true">BB</div>
+            <div class="planb-logo-asset planb-logo-asset--bitcoin" aria-hidden="true"></div>
             <div>
-              <h3>Example beta</h3>
-              <p>A second item shows how repeated identity cards form a responsive grid.</p>
+              <h3>Bitcoin mark</h3>
+              <p>Use as a compact signal when the full lockup is already established.</p>
             </div>
           </article>
           <article class="planb-logo-card">
-            <div class="planb-logo-mark" aria-hidden="true">CC</div>
+            <div class="planb-logo-asset planb-logo-asset--square" aria-hidden="true"></div>
             <div>
-              <h3>Example gamma</h3>
-              <p>Initials are decorative; the visible heading carries the accessible name.</p>
+              <h3>Square lockup</h3>
+              <p>Use in compact cards and square placements while the heading carries the name.</p>
             </div>
           </article>
         </div>
@@ -80,16 +107,20 @@ app.replaceChildren(
 
       <section class="planb-panel" id="timeline">
         <div class="planb-section-heading">
-          <p class="planb-eyebrow">Timeline</p>
-          <h2>Ordered milestones with supporting detail.</h2>
+          <h2>Timeline</h2>
           <p>Use this pattern for dated history, delivery stages, or an ordered process.</p>
+        </div>
+        <div class="planb-specimen-contract">
+          <span>Sequence contract</span>
+          <code>.planb-timeline</code>
+          <code>.planb-timeline__item</code>
         </div>
         <ol class="planb-timeline" aria-label="Example milestones">
           <li class="planb-timeline__item">
             <time datetime="2024">2024</time>
             <div>
               <h3>First milestone</h3>
-              <p>A concise explanation gives the date context without turning the timeline into a table.</p>
+              <p>A concise explanation gives the date context without becoming a table.</p>
             </div>
           </li>
           <li class="planb-timeline__item">
@@ -111,9 +142,13 @@ app.replaceChildren(
 
       <section class="planb-panel" id="collections">
         <div class="planb-section-heading">
-          <p class="planb-eyebrow">Publication cards</p>
-          <h2>Metadata-rich entries for a library.</h2>
-          <p>Publication cards pair descriptive copy, structured metadata, and a restrained text link.</p>
+          <h2>Publication cards</h2>
+          <p>Pair descriptive copy, structured metadata, and one restrained text link.</p>
+        </div>
+        <div class="planb-specimen-contract">
+          <span>Collection contract</span>
+          <code>.planb-publication-card</code>
+          <code>.planb-meta-list</code>
         </div>
         <div class="planb-publication-grid">
           <article class="planb-publication-card">
@@ -153,9 +188,13 @@ app.replaceChildren(
 
       <section class="planb-panel" id="actions">
         <div class="planb-section-heading">
-          <p class="planb-eyebrow">Software cards</p>
-          <h2>Action-oriented cards for tools and services.</h2>
-          <p>These examples show kickers, compact marks, primary buttons, and secondary links.</p>
+          <h2>Software cards</h2>
+          <p>Show compact marks, one primary action, and one supporting link.</p>
+        </div>
+        <div class="planb-specimen-contract">
+          <span>Action contract</span>
+          <code>.planb-software-card</code>
+          <code>.planb-action-row</code>
         </div>
         <div class="planb-software-grid">
           <article class="planb-software-card">
@@ -189,3 +228,28 @@ app.replaceChildren(
 );
 
 initializePlanBThemeToggle();
+
+const copyButton = document.querySelector("[data-copy-code]");
+const copyStatus = document.querySelector("[data-copy-status]");
+
+copyButton?.addEventListener("click", async () => {
+  const code = document.getElementById(copyButton.dataset.copyCode);
+
+  if (!code) {
+    return;
+  }
+
+  try {
+    if (!navigator.clipboard?.writeText) {
+      throw new Error("Clipboard API unavailable");
+    }
+
+    await navigator.clipboard.writeText(code.textContent);
+    copyButton.textContent = "Imports copied";
+    copyStatus.textContent = "The import snippet is ready to paste.";
+  } catch {
+    copyButton.textContent = "Select imports";
+    copyStatus.textContent = "Copy is unavailable here. Select the code and copy it manually.";
+    code.closest("pre")?.focus();
+  }
+});

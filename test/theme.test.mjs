@@ -3,6 +3,7 @@ import assert from "node:assert/strict";
 
 import {
   createPlanBFooter,
+  createPlanBHeader,
   createPlanBPageShell,
   createPlanBSiteHeader,
   defaultPlanBThemeContent,
@@ -11,13 +12,36 @@ import {
 } from "../src/theme/index.js";
 
 test("default theme content exposes header copy", () => {
-  assert.equal(defaultPlanBThemeContent.siteHeader.brand, "Plan B Theme");
+  assert.equal(defaultPlanBThemeContent.siteHeader.brand, "Lugano Plan B Theme");
   assert.ok(defaultPlanBThemeContent.siteHeader.navItems.length > 0);
-  assert.equal(defaultPlanBThemeContent.header.eyebrow, "Theme specimen");
-  assert.match(defaultPlanBThemeContent.header.title, /patterns/i);
-  assert.match(defaultPlanBThemeContent.header.lede, /content-neutral/i);
-  assert.equal(defaultPlanBThemeContent.footer.brand, "Plan B Theme");
+  assert.equal(defaultPlanBThemeContent.header.eyebrow, "Lugano Plan B shared theme");
+  assert.match(defaultPlanBThemeContent.header.title, /visual shell/i);
+  assert.match(defaultPlanBThemeContent.header.lede, /host keeps control/i);
+  assert.equal(defaultPlanBThemeContent.footer.brand, "Lugano Plan B Theme");
   assert.ok(defaultPlanBThemeContent.footer.groups.length > 0);
+});
+
+test("createPlanBHeader renders the hero as a non-banner section", () => {
+  globalThis.document = {
+    createElement(tagName) {
+      return {
+        tagName,
+        className: "",
+        innerHTML: "",
+      };
+    },
+  };
+
+  const hero = createPlanBHeader({
+    eyebrow: "Shared theme",
+    title: "One shell",
+    lede: "Host-owned content.",
+  });
+
+  assert.equal(hero.tagName, "section");
+  assert.equal(hero.className, "planb-hero");
+  assert.match(hero.innerHTML, /data-planb-theme-toggle/);
+  assert.doesNotMatch(hero.innerHTML, /aria-pressed/);
 });
 
 test("createPlanBSiteHeader renders brand navigation and action", () => {
@@ -108,7 +132,7 @@ test("mountPlanBHeader prepends the header markup", () => {
   assert.match(header.innerHTML, /Custom/);
   assert.match(header.innerHTML, /Injected/);
   assert.match(header.innerHTML, /data-planb-theme-toggle/);
-  assert.match(header.innerHTML, /aria-pressed="false"/);
+  assert.doesNotMatch(header.innerHTML, /aria-pressed/);
 });
 
 test("createPlanBFooter renders footer summary navigation and meta text", () => {
@@ -168,14 +192,20 @@ test("createPlanBPageShell appends header and main content", () => {
   });
 
   assert.equal(shell.className, "planb-page-shell");
-  assert.equal(shell.children[0], siteHeader);
-  assert.equal(shell.children[1], header);
-  assert.equal(shell.children[2].tagName, "main");
-  assert.match(shell.children[2].innerHTML, /Body/);
-  assert.equal(shell.children[3], footer);
+  assert.equal(shell.children[0].tagName, "a");
+  assert.equal(shell.children[0].className, "planb-skip-link");
+  assert.equal(shell.children[0].href, "#planb-main-content");
+  assert.equal(shell.children[0].textContent, "Skip to main content");
+  assert.equal(shell.children[1], siteHeader);
+  assert.equal(shell.children[2], header);
+  assert.equal(shell.children[3].tagName, "main");
+  assert.equal(shell.children[3].id, "planb-main-content");
+  assert.equal(shell.children[3].tabIndex, -1);
+  assert.match(shell.children[3].innerHTML, /Body/);
+  assert.equal(shell.children[4], footer);
 });
 
-test("initializePlanBThemeToggle applies and persists manual theme preference", () => {
+test("initializePlanBThemeToggle cycles system, light, dark, and back to system", () => {
   const listeners = new Map();
   const themeToggle = {
     dataset: {},
@@ -201,6 +231,9 @@ test("initializePlanBThemeToggle applies and persists manual theme preference", 
     },
     setItem(key, value) {
       storageValues.set(key, value);
+    },
+    removeItem(key) {
+      storageValues.delete(key);
     },
   };
   const mediaListeners = new Map();
@@ -230,19 +263,37 @@ test("initializePlanBThemeToggle applies and persists manual theme preference", 
 
   const controls = initializePlanBThemeToggle({ documentRef, storage, mediaQueryList });
 
-  assert.equal(themeToggle.textContent, "Use dark");
-  assert.equal(themeToggle.dataset.themeTarget, "dark");
-  assert.equal(themeToggle.attributes["aria-pressed"], "false");
+  assert.equal(themeToggle.textContent, "Theme · System (Light)");
+  assert.equal(themeToggle.dataset.themePreference, "system");
+  assert.equal(themeToggle.dataset.themeTarget, "light");
+  assert.equal(themeToggle.attributes["aria-pressed"], undefined);
   assert.equal(metaColorScheme.content, "light dark");
+
+  listeners.get("click")();
+
+  assert.equal(storage.getItem("planb-color-scheme"), "light");
+  assert.equal(root.dataset.theme, "light");
+  assert.equal(metaColorScheme.content, "light");
+  assert.equal(themeToggle.textContent, "Theme · Light");
+  assert.equal(themeToggle.dataset.themeTarget, "dark");
+  assert.equal(controls.getPreference(), "light");
 
   listeners.get("click")();
 
   assert.equal(storage.getItem("planb-color-scheme"), "dark");
   assert.equal(root.dataset.theme, "dark");
   assert.equal(metaColorScheme.content, "dark");
-  assert.equal(themeToggle.textContent, "Use light");
-  assert.equal(themeToggle.attributes["aria-pressed"], "true");
+  assert.equal(themeToggle.textContent, "Theme · Dark");
+  assert.equal(themeToggle.dataset.themeTarget, "system");
   assert.equal(controls.getPreference(), "dark");
+
+  listeners.get("click")();
+
+  assert.equal(storage.getItem("planb-color-scheme"), null);
+  assert.equal(root.dataset.theme, undefined);
+  assert.equal(metaColorScheme.content, "light dark");
+  assert.equal(themeToggle.textContent, "Theme · System (Light)");
+  assert.equal(controls.getPreference(), null);
 
   controls.dispose();
   assert.equal(listeners.has("click"), false);

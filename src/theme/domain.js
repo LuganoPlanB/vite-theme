@@ -6,25 +6,28 @@
 export function createDefaultPlanBThemeContent() {
   return {
     siteHeader: {
-      brand: "Plan B Theme",
+      brand: "Lugano Plan B Theme",
       navItems: [
-        { label: "Cards", href: "#cards" },
+        { label: "Start", href: "#adopt" },
+        { label: "Patterns", href: "#foundation" },
         { label: "Timeline", href: "#timeline" },
-        { label: "Collections", href: "#collections" },
-        { label: "Actions", href: "#actions" },
+        { label: "Assets", href: "#cards" },
       ],
-      action: { label: "View source", href: "https://github.com/LuganoPlanB/vite-theme" },
+      action: {
+        label: "Adoption guide",
+        href: "https://github.com/LuganoPlanB/vite-theme#quick-start",
+      },
     },
     header: {
-      eyebrow: "Theme specimen",
-      title: "Reusable patterns for Plan B sites",
+      eyebrow: "Lugano Plan B shared theme",
+      title: "One visual shell for every Plan B site",
       lede:
-        "A content-neutral showcase of the shared page shell, responsive surfaces, navigation, typography, actions, and light and dark themes.",
+        "Adopt the shared page chrome, tokens, assets, and plain DOM helpers while every host keeps control of its own content.",
     },
     footer: {
-      brand: "Plan B Theme",
+      brand: "Lugano Plan B Theme",
       summary:
-        "A reusable visual shell for Vite and VitePress sites. Host applications supply their own content.",
+        "A stable visual contract for Vite and VitePress sites. Host applications keep their own routes, content, and business logic.",
       groups: [
         {
           title: "Specimens",
@@ -43,7 +46,7 @@ export function createDefaultPlanBThemeContent() {
           ],
         },
       ],
-      meta: "Demonstration content only. Product and editorial content belong to host sites.",
+      meta: "Ready to adopt: stable ESM exports, namespaced CSS, responsive layouts, and keyboard-visible controls.",
     },
   };
 }
