@@ -48,10 +48,10 @@ npm test
 | `theme.css` | CSS custom properties, layout, panels, cards, footer |
 | `createPlanBHeader(opts)` | Non-banner hero section (`eyebrow`, `title`, `lede`) |
 | `createPlanBPageShell(opts)` | Full wrapper with skip link and focusable main landmark (`siteHeader`, `header`, `mainContent`, `footer`) |
-| `createPlanBSiteHeader(opts)` | Top navigation bar |
+| `createPlanBSiteHeader(opts)` | Top navigation bar with the appearance switch |
 | `createPlanBFooter(opts)` | Site footer with link groups |
 | `mountPlanBHeader(opts)` | Quick hero-only mount into a container |
-| `initializePlanBThemeToggle()` | System/light/dark preference control wired to `--planb-*` CSS vars |
+| `initializePlanBThemeToggle()` | Accessible light/dark switch wired to `--planb-*` CSS vars |
 | `defaultPlanBThemeContent` | Default copy for site header, hero, footer |
 
 Customise colours:
@@ -64,9 +64,10 @@ Customise colours:
 }
 ```
 
-The theme control cycles through system, light, and dark preferences. System
-mode removes the stored override and follows `prefers-color-scheme`; explicit
-light or dark choices persist under `planb-color-scheme`.
+The header switch initially follows `prefers-color-scheme`. Its first use pins
+the opposite theme, and later uses alternate between light and dark. The
+explicit choice persists under `planb-color-scheme`; removing that key restores
+system-following behavior.
 
 `createPlanBPageShell()` renders one page-level banner through
 `createPlanBSiteHeader()`. The hero is a semantic section, and the shell adds a

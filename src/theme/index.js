@@ -8,7 +8,30 @@ import {
 export const defaultPlanBThemeContent = createDefaultPlanBThemeContent();
 const PLANB_THEME_STORAGE_KEY = "planb-color-scheme";
 const PLANB_THEMES = new Set(["light", "dark"]);
-const PLANB_THEME_PREFERENCES = ["system", "light", "dark"];
+
+const planBThemeToggleMarkup = `
+  <button
+    type="button"
+    class="planb-theme-toggle"
+    data-planb-theme-toggle
+    role="switch"
+    aria-checked="false"
+    aria-label="Switch to dark theme"
+    title="Switch to dark theme"
+  >
+    <span class="planb-theme-toggle__track" aria-hidden="true">
+      <span class="planb-theme-toggle__thumb">
+        <svg class="planb-theme-toggle__icon planb-theme-toggle__icon--sun" viewBox="0 0 24 24" aria-hidden="true">
+          <circle cx="12" cy="12" r="3.5"></circle>
+          <path d="M12 2.5v2M12 19.5v2M4.6 4.6 6 6M18 18l1.4 1.4M2.5 12h2M19.5 12h2M4.6 19.4 6 18M18 6l1.4-1.4"></path>
+        </svg>
+        <svg class="planb-theme-toggle__icon planb-theme-toggle__icon--moon" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M20.2 15.1A8.4 8.4 0 0 1 8.9 3.8 8.5 8.5 0 1 0 20.2 15Z"></path>
+        </svg>
+      </span>
+    </span>
+  </button>
+`;
 
 /**
  * Creates the site-level navigation header used above the hero.
@@ -38,9 +61,12 @@ export function createPlanBSiteHeader(siteHeaderContent = {}) {
             .join("")}
         </ul>
       </nav>
-      <a class="planb-header-action" href="${escapeHtml(siteHeader.action.href)}">
-        ${escapeHtml(siteHeader.action.label)}
-      </a>
+      <div class="planb-site-header__actions">
+        <a class="planb-header-action" href="${escapeHtml(siteHeader.action.href)}">
+          ${escapeHtml(siteHeader.action.label)}
+        </a>
+        ${planBThemeToggleMarkup}
+      </div>
     </div>
   `;
 
@@ -58,19 +84,14 @@ export function createPlanBHeader(headerContent = {}) {
   const element = document.createElement("section");
 
   element.className = "planb-hero";
+  element.setAttribute("aria-labelledby", "planb-hero-title");
   element.innerHTML = `
-    <div class="planb-hero__overlay"></div>
-    <div class="planb-container planb-hero__inner">
-      <p class="planb-eyebrow">${escapeHtml(header.eyebrow)}</p>
-      <button
-        type="button"
-        class="planb-theme-toggle"
-        data-planb-theme-toggle
-        aria-live="polite"
-      ></button>
-      <h1>${escapeHtml(header.title)}</h1>
-      <p class="planb-lede">${escapeHtml(header.lede)}</p>
-    </div>
+      <div class="planb-hero__overlay"></div>
+      <div class="planb-container planb-hero__inner">
+        <p class="planb-eyebrow">${escapeHtml(header.eyebrow)}</p>
+        <h1 id="planb-hero-title">${escapeHtml(header.title)}</h1>
+        <p class="planb-lede">${escapeHtml(header.lede)}</p>
+      </div>
   `;
 
   return element;
@@ -202,24 +223,21 @@ export function initializePlanBThemeToggle({
       return null;
     }
   };
-  const writePreference = (preference) => {
+  let preference = readPreference();
+
+  const writePreference = (nextPreference) => {
+    preference = nextPreference;
+
     try {
-      if (preference === "system") {
-        storage?.removeItem(PLANB_THEME_STORAGE_KEY);
-      } else {
-        storage?.setItem(PLANB_THEME_STORAGE_KEY, preference);
-      }
+      storage?.setItem(PLANB_THEME_STORAGE_KEY, nextPreference);
     } catch {
       // A blocked storage API should not prevent the in-page theme control from working.
     }
   };
   const getSystemPreference = () => (mediaQueryList?.matches ? "dark" : "light");
   const getActiveTheme = () => root.dataset.theme || getSystemPreference();
-  const formatTheme = (theme) => `${theme.charAt(0).toUpperCase()}${theme.slice(1)}`;
 
   const syncTheme = () => {
-    const preference = readPreference();
-
     if (preference) {
       root.dataset.theme = preference;
       metaColorScheme.content = preference;
@@ -229,43 +247,35 @@ export function initializePlanBThemeToggle({
     }
 
     const activeTheme = getActiveTheme();
-    const currentPreference = preference || "system";
-    const currentIndex = PLANB_THEME_PREFERENCES.indexOf(currentPreference);
-    const nextTheme = PLANB_THEME_PREFERENCES[(currentIndex + 1) % PLANB_THEME_PREFERENCES.length];
-    const visiblePreference =
-      currentPreference === "system"
-        ? `System (${formatTheme(activeTheme)})`
-        : formatTheme(currentPreference);
+    const nextTheme = activeTheme === "dark" ? "light" : "dark";
+    const accessibleLabel = `Switch to ${nextTheme} theme`;
 
-    themeToggle.dataset.themePreference = currentPreference;
+    themeToggle.dataset.themePreference = preference || "system";
     themeToggle.dataset.themeTarget = nextTheme;
     themeToggle.dataset.activeTheme = activeTheme;
-    themeToggle.textContent = `Theme · ${visiblePreference}`;
-    themeToggle.setAttribute(
-      "aria-label",
-      `Theme preference is ${visiblePreference}. Activate to use ${nextTheme} preference.`,
-    );
-    themeToggle.title = `Use ${nextTheme} preference`;
+    themeToggle.setAttribute("role", "switch");
+    themeToggle.setAttribute("aria-checked", String(activeTheme === "dark"));
+    themeToggle.setAttribute("aria-label", accessibleLabel);
+    themeToggle.title = accessibleLabel;
+
+    if (!themeToggle.querySelector?.(".planb-theme-toggle__track")) {
+      themeToggle.textContent = accessibleLabel;
+    }
   };
 
   const handleToggleClick = () => {
-    const nextTheme = PLANB_THEME_PREFERENCES.includes(themeToggle.dataset.themeTarget)
+    const nextTheme = PLANB_THEMES.has(themeToggle.dataset.themeTarget)
       ? themeToggle.dataset.themeTarget
-      : "system";
+      : getActiveTheme() === "dark"
+        ? "light"
+        : "dark";
 
     writePreference(nextTheme);
-
-    if (nextTheme === "system") {
-      delete root.dataset.theme;
-    } else {
-      root.dataset.theme = nextTheme;
-    }
-
     syncTheme();
   };
 
   const handleSystemChange = () => {
-    if (!readPreference()) {
+    if (!preference) {
       syncTheme();
     }
   };
@@ -290,7 +300,7 @@ export function initializePlanBThemeToggle({
         mediaQueryList.removeListener(handleSystemChange);
       }
     },
-    getPreference: readPreference,
+    getPreference: () => preference,
   };
 }
 

@@ -191,7 +191,7 @@ Dark mode switches the canvas to charcoal (`#171717`), panels to warm black (`#2
 
 The system uses a centered container capped at 1180px with 20px desktop gutters and 12px mobile gutters. Sections follow a 56px vertical rhythm, panels use 28px internal spacing, and repeating grids use a compact 16px gap. Two-column content collapses to one column below 720px; auto-fit collections retain cards at roughly 15–18rem minimum widths.
 
-The hero is stacked on small screens and becomes an asymmetric two-column composition from 960px: the title owns the left, while the theme control and lede settle on the right. Navigation wraps rather than truncates. Timeline geometry simplifies from a labeled two-column rail to a single-column rail on mobile. Container queries may refine an individual card without coupling it to the page viewport.
+The hero is stacked on small screens and becomes an asymmetric two-column composition from 960px: the title owns the left while the lede settles on the right. The appearance switch sits with the actions at the upper right of the site header. Navigation wraps rather than truncates. Timeline geometry simplifies from a labeled two-column rail to a single-column rail on mobile. Container queries may refine an individual card without coupling it to the page viewport.
 
 **The Open Edge Rule.** Preserve breathing room around serious content; density belongs inside structured grids, not against the viewport edge.
 
@@ -239,7 +239,7 @@ The hero pairs a photographic civic context with restrained atmospheric gradient
 
 ### Theme Toggle
 
-The theme toggle is a labeled pill with a small gradient status dot. It must expose the next action in its label, persist an explicit preference, respect the system preference when unset, and remain fully usable with keyboard and reduced motion.
+The theme toggle is a compact horizontal switch with a sliding thumb and authored sun and moon icons. It must expose the next action through its accessible name, report state with switch semantics, persist an explicit preference, respect the system preference when unset, and remain fully usable with keyboard and reduced motion.
 
 ### Timeline
 

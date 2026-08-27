@@ -336,6 +336,12 @@ h3 {
   padding: 16px 0;
 }
 
+.planb-site-header__actions {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
 .planb-brand,
 .planb-site-nav a,
 .planb-header-action {
@@ -470,52 +476,104 @@ h3 {
 }
 
 .planb-theme-toggle {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.55rem;
-  justify-self: end;
-  align-self: start;
-  min-width: 12rem;
-  min-height: 2.75rem;
-  padding: 0.7rem 1rem;
+  display: grid;
+  flex: 0 0 auto;
+  place-items: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--planb-color-text-soft);
+  font: inherit;
+  cursor: pointer;
+}
+
+.planb-theme-toggle__track {
+  position: relative;
+  display: block;
+  width: 2.5rem;
+  height: 1.375rem;
   border: var(--planb-border-soft);
   border-radius: 999px;
-  background:
-    linear-gradient(90deg, transparent 0%, color-mix(in srgb, var(--planb-color-panel) 92%, white 8%) 15%, color-mix(in srgb, var(--planb-color-panel-strong) 96%, transparent) 85%, transparent 100%),
-    var(--planb-color-panel);
-  color: var(--planb-color-accent-strong);
-  font: inherit;
-  font-size: 0.85rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  cursor: pointer;
-  box-shadow: 0 12px 24px color-mix(in srgb, var(--planb-color-text) 10%, transparent);
+  background: var(--planb-color-panel-strong);
+  transition: border-color 200ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.planb-theme-toggle__thumb {
+  position: absolute;
+  inset: 1px auto auto 1px;
+  display: grid;
+  place-items: center;
+  width: 1.125rem;
+  height: 1.125rem;
+  border-radius: 50%;
+  background: var(--planb-color-panel);
+  color: var(--planb-color-text-soft);
+  box-shadow: 0 2px 5px color-mix(in srgb, var(--planb-color-text) 22%, transparent);
   transition:
-    transform 160ms ease,
-    border-color 160ms ease,
-    box-shadow 160ms ease;
+    color 200ms cubic-bezier(0.16, 1, 0.3, 1),
+    transform 200ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.planb-theme-toggle::before {
-  content: "";
-  width: 0.72rem;
-  height: 0.72rem;
-  border-radius: 999px;
-  background: var(--planb-gradient-rainbow);
-  box-shadow: 0 0 0 3px color-mix(in srgb, var(--planb-color-accent) 14%, transparent);
+.planb-theme-toggle__icon {
+  position: absolute;
+  width: 0.75rem;
+  height: 0.75rem;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.8;
+  transition: opacity 140ms ease;
 }
 
-.planb-theme-toggle:hover {
-  border-color: color-mix(in srgb, var(--planb-color-accent) 44%, transparent);
-  transform: translateY(-1px);
-  box-shadow: 0 16px 30px color-mix(in srgb, var(--planb-color-accent) 20%, transparent);
+.planb-theme-toggle__icon--sun {
+  opacity: 1;
+}
+
+.planb-theme-toggle__icon--moon {
+  opacity: 0;
+}
+
+.planb-theme-toggle[data-active-theme="dark"] .planb-theme-toggle__thumb {
+  transform: translateX(1.125rem);
+}
+
+.planb-theme-toggle[data-active-theme="dark"] .planb-theme-toggle__icon--sun {
+  opacity: 0;
+}
+
+.planb-theme-toggle[data-active-theme="dark"] .planb-theme-toggle__icon--moon {
+  opacity: 1;
+}
+
+.planb-theme-toggle:hover .planb-theme-toggle__track {
+  border-color: var(--planb-color-accent);
 }
 
 .planb-theme-toggle:focus-visible {
   outline: 2px solid var(--planb-color-focus);
-  outline-offset: 3px;
+  outline-offset: 1px;
+  border-radius: 999px;
+}
+
+/* Keep custom host markup aligned if it uses the public toggle class directly. */
+.planb-theme-toggle:not(:has(.planb-theme-toggle__track)) {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: auto;
+  min-width: 2.75rem;
+  min-height: 2.75rem;
+  padding: 0.7rem 0.9rem;
+  border: var(--planb-border-soft);
+  border-radius: 999px;
+  background: var(--planb-color-panel);
+  color: var(--planb-color-accent-strong);
+  font-size: 0.85rem;
+  font-weight: 700;
 }
 
 .planb-eyebrow::before {
@@ -1160,16 +1218,14 @@ h3 {
     margin-bottom: 20px;
   }
 
-  .planb-theme-toggle {
-    grid-column: 2 / 3;
-    margin-left: auto;
-  }
-
   .planb-hero h1 {
+    grid-column: 1 / 2;
     max-width: 18ch;
   }
 
   .planb-lede {
+    grid-column: 2 / 3;
+    grid-row: 2;
     align-self: end;
     margin: 0 0 0 auto;
   }
@@ -1196,23 +1252,35 @@ h3 {
     padding: 56px 0 60px;
   }
 
-  .planb-theme-toggle {
-    justify-self: start;
-    margin-bottom: 1rem;
-  }
-
   .planb-site-header__inner {
     display: grid;
     grid-template-columns: minmax(0, 1fr) auto;
     align-items: center;
   }
 
+  .planb-site-header__actions {
+    display: contents;
+  }
+
   .planb-site-nav {
     grid-column: 1 / -1;
+    grid-row: 2;
   }
 
   .planb-site-nav ul {
     justify-content: flex-start;
+  }
+
+  .planb-header-action {
+    grid-column: 1 / -1;
+    grid-row: 3;
+    width: fit-content;
+  }
+
+  .planb-theme-toggle {
+    grid-column: 2;
+    grid-row: 1;
+    justify-self: end;
   }
 
   .planb-panel {
@@ -1280,13 +1348,15 @@ h3 {
   .planb-button-link,
   .planb-header-action,
   .planb-skip-link,
-  .planb-theme-toggle {
+  .planb-theme-toggle,
+  .planb-theme-toggle__track,
+  .planb-theme-toggle__thumb,
+  .planb-theme-toggle__icon {
     transition: none;
   }
 
   .planb-button-link:hover,
-  .planb-header-action:hover,
-  .planb-theme-toggle:hover {
+  .planb-header-action:hover {
     transform: none;
   }
 }
